@@ -13,7 +13,7 @@ import java.util.function.Supplier;
 public class ItemRegistry {
     public static void init() {}
 
-    public static final Supplier<Item> POKE_BREATHER = registerItem("poke_breather", () -> new BreatherItem(new Item.Properties()));
+    public static final Supplier<Item> POKE_BREATHER = registerItem("poke_breather", BreatherItem::new);
 
     @SuppressWarnings("SameParameterValue")
     private static <T extends Item> Supplier<T> registerItem(String id, Supplier<T> item) {
