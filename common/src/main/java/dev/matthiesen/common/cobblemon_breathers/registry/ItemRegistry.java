@@ -8,14 +8,29 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Supplier;
 
 public class ItemRegistry {
     public static void init() {}
 
-    public static final Supplier<Item> REBREATHER_MK1 = registerItem("rebreather_mk1", ReBreatherMk1Item::new);
-    public static final Supplier<Item> REBREATHER_MK2 = registerItem("rebreather_mk2", ReBreatherMk2Item::new);
-    public static final Supplier<Item> REBREATHER_MK3 = registerItem("rebreather_mk3", ReBreatherMk3Item::new);
+    public static final Map<String, String> EN_TRANSLATION_MAP = Map.of(
+            "rebreather_mk1", "ReBreather Mk1",
+            "rebreather_mk2", "ReBreather Mk2",
+            "rebreather_mk3", "ReBreather Mk3"
+    );
+
+    public static Map<String, Supplier<? extends Item>> ALL_BREATHERS = new HashMap<>();
+
+    public static final Supplier<Item> REBREATHER_MK1 = registerReBreather("rebreather_mk1", ReBreatherMk1Item::new);
+    public static final Supplier<Item> REBREATHER_MK2 = registerReBreather("rebreather_mk2", ReBreatherMk2Item::new);
+    public static final Supplier<Item> REBREATHER_MK3 = registerReBreather("rebreather_mk3", ReBreatherMk3Item::new);
+
+    private static <T extends Item> Supplier<T> registerReBreather(String id, Supplier<T> supplier) {
+        ALL_BREATHERS.put(id, supplier);
+        return registerItem(id, supplier);
+    }
 
     private static <T extends Item> Supplier<T> registerItem(String id, Supplier<T> item) {
         return CobblemonBreathers.COMMON_PLATFORM.registerItem(id, item);

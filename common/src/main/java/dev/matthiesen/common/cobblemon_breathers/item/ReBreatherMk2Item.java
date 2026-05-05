@@ -10,7 +10,8 @@ public class ReBreatherMk2Item extends AbstractReBreatherItem {
     public static final int MAX_AIR = 600;
 
     public static final List<MobEffectInstance> EFFECTS = List.of(
-            new MobEffectInstance(MobEffects.WATER_BREATHING, 100, 0, false, false)
+            new MobEffectInstance(MobEffects.WATER_BREATHING, 100, 0, false, false),
+            new MobEffectInstance(MobEffects.NIGHT_VISION, 100, 0, false, false)
     );
 
     public ReBreatherMk2Item() {

@@ -7,6 +7,14 @@ architectury {
     common("neoforge", "fabric")
 }
 
+val generatedResources = file("src/generated")
+
+sourceSets {
+    main {
+        resources.srcDir(generatedResources)
+    }
+}
+
 loom {
     silentMojangMappingsLicense()
 }
@@ -23,6 +31,13 @@ dependencies {
 tasks {
     test {
         useJUnitPlatform()
+    }
+
+    processResources {
+        duplicatesStrategy = DuplicatesStrategy.INCLUDE
+        filesMatching("pack.mcmeta") {
+            expand(project.properties)
+        }
     }
 
     remapSourcesJar {

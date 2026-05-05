@@ -112,10 +112,10 @@ public abstract class AbstractReBreatherItem extends Item implements Equipable  
         boolean under10PercentAir = currentAir <= (maxAir * 0.1);
         if (under10PercentAir && currentAir > 0) {
             var remainingSeconds = currentAir - maxAir;
-            player.displayClientMessage(Component.translatable("air_supply.cobblemon_breathers.supply_low", remainingSeconds).withStyle(ChatFormatting.RED), true);
+            player.displayClientMessage(Component.translatable("airSupply.cobblemon_breathers.supply_low", remainingSeconds).withStyle(ChatFormatting.RED), true);
         }
         if (currentAir == 0) {
-            player.displayClientMessage(Component.translatable("air_supply.cobblemon_breathers.supply_depleted").withStyle(ChatFormatting.RED), true);
+            player.displayClientMessage(Component.translatable("airSupply.cobblemon_breathers.supply_depleted").withStyle(ChatFormatting.RED), true);
             player.hurt(player.damageSources().drown(), 2.0F);
         }
     }
@@ -139,6 +139,6 @@ public abstract class AbstractReBreatherItem extends Item implements Equipable  
     @Override
     public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
         int currentAir = itemStack.getOrDefault(ComponentTypesRegistry.AIR_RESERVE, 0);
-        list.add(Component.translatable("air_supply.cobblemon_breathers.current_air", currentAir, maxAir).withStyle(ChatFormatting.BLUE));
+        list.add(Component.translatable("airSupply.cobblemon_breathers.current_air", currentAir, maxAir).withStyle(ChatFormatting.BLUE));
     }
 }

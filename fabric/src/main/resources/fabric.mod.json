@@ -16,6 +16,9 @@
     ],
     "client": [
       "dev.matthiesen.fabric.cobblemon_breathers.CobblemonBreathersFabricClient"
+    ],
+    "fabric-datagen": [
+      "dev.matthiesen.fabric.cobblemon_breathers.datagen.DataGenerator"
     ]
   },
   "depends": {
