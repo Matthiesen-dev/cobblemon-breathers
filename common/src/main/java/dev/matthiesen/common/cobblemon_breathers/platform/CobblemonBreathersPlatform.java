@@ -1,6 +1,7 @@
 package dev.matthiesen.common.cobblemon_breathers.platform;
 
 import net.minecraft.advancements.CriterionTrigger;
+import net.minecraft.core.component.DataComponentType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.sounds.SoundEvent;
@@ -22,6 +23,7 @@ public interface CobblemonBreathersPlatform {
     <T extends CreativeModeTab> Supplier<T> registerCreativeModeTab(String id, Supplier<T> tab);
     <T extends CriterionTrigger<?>> Supplier<T> registerCriteriaTriggers(String id, Supplier<T> criterionTrigger);
     <T extends ResourceLocation> Supplier<T> registerStats(String id, Supplier<T> stats);
+    <T extends DataComponentType<?>> Supplier<T> registerComponentType(String id, Supplier<T> component);
 
     // General Utilities
     MinecraftServer server();

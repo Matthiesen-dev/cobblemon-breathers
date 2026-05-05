@@ -2,6 +2,7 @@ package dev.matthiesen.neoforge.cobblemon_breathers;
 
 import dev.matthiesen.common.cobblemon_breathers.platform.CobblemonBreathersPlatform;
 import net.minecraft.advancements.CriterionTrigger;
+import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
@@ -52,6 +53,11 @@ public class CobblemonBreathersNeoForgePlatform implements CobblemonBreathersPla
     @Override
     public <T extends ResourceLocation> Supplier<T> registerStats(String id, Supplier<T> stats) {
         return CobblemonBreathersNeoForge.STATS.register(id, stats);
+    }
+
+    @Override
+    public <T extends DataComponentType<?>> Supplier<T> registerComponentType(String id, Supplier<T> component) {
+        return CobblemonBreathersNeoForge.COMPONENT_TYPES.register(id, component);
     }
 
     @Override

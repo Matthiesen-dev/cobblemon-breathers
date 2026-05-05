@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.advancements.CriterionTrigger;
 import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
@@ -54,6 +55,11 @@ public class CobblemonBreathersFabricPlatform implements CobblemonBreathersPlatf
     @Override
     public <T extends ResourceLocation> Supplier<T> registerStats(String id, Supplier<T> stats) {
         return registerSupplier(BuiltInRegistries.CUSTOM_STAT, id, stats);
+    }
+
+    @Override
+    public <T extends DataComponentType<?>> Supplier<T> registerComponentType(String id, Supplier<T> component) {
+        return registerSupplier(BuiltInRegistries.DATA_COMPONENT_TYPE, id, component);
     }
 
     @Override

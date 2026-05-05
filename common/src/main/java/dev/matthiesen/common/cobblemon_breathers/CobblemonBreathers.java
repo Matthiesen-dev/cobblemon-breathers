@@ -4,6 +4,7 @@ import dev.matthiesen.common.cobblemon_breathers.compat.accessories.AccessoriesC
 import dev.matthiesen.common.cobblemon_breathers.config.ConfigManager;
 import dev.matthiesen.common.cobblemon_breathers.config.ModConfig;
 import dev.matthiesen.common.cobblemon_breathers.platform.CobblemonBreathersPlatform;
+import dev.matthiesen.common.cobblemon_breathers.registry.ComponentTypesRegistry;
 import dev.matthiesen.common.cobblemon_breathers.registry.CriterionTriggerRegistry;
 import dev.matthiesen.common.cobblemon_breathers.registry.ItemRegistry;
 
@@ -27,6 +28,7 @@ public class CobblemonBreathers {
         // StatsRegistry.init();
         // BlockRegistry.init();
         // BlockEntityRegistry.init();
+        ComponentTypesRegistry.init();
         ItemRegistry.init();
         CriterionTriggerRegistry.init();
     }

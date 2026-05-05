@@ -1,4 +1,7 @@
 {
   "itemGroup.cobblemon_breathers.cobblemon_breathers": "Cobblemon Breathers",
-  "item.cobblemon_breathers.poke_breather": "Poke Breather"
+  "item.cobblemon_breathers.poke_breather": "Poke Breather",
+  "air_supply.cobblemon_breathers.current_air": "Current air supply: %s/%s seconds",
+  "air_supply.cobblemon_breathers.supply_low": "Air supply low! %s Seconds left!",
+  "air_supply.cobblemon_breathers.supply_depleted": "Air supply depleted! You are suffocating!"
 }

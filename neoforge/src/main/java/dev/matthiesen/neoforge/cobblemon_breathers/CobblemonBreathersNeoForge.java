@@ -3,6 +3,7 @@ package dev.matthiesen.neoforge.cobblemon_breathers;
 import dev.matthiesen.common.cobblemon_breathers.CobblemonBreathers;
 import dev.matthiesen.common.cobblemon_breathers.Constants;
 import net.minecraft.advancements.CriterionTrigger;
+import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
@@ -26,6 +27,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 @Mod(Constants.MOD_ID)
 public class CobblemonBreathersNeoForge {
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(Registries.SOUND_EVENT, Constants.MOD_ID);
+    public static final DeferredRegister<DataComponentType<?>> COMPONENT_TYPES = DeferredRegister.create(Registries.DATA_COMPONENT_TYPE, Constants.MOD_ID);
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(Registries.BLOCK, Constants.MOD_ID);
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, Constants.MOD_ID);
     public static final DeferredRegister<CreativeModeTab> CREATIVE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Constants.MOD_ID);
@@ -43,6 +45,7 @@ public class CobblemonBreathersNeoForge {
 
         STATS.register(modBus);
         SOUND_EVENTS.register(modBus);
+        COMPONENT_TYPES.register(modBus);
         BLOCKS.register(modBus);
         BLOCK_ENTITIES.register(modBus);
         CREATIVE_TABS.register(modBus);
