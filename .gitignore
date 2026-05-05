@@ -34,4 +34,5 @@ common/src/main/resources/assets/cobblemon/showdown
 
 # Generated files
 */generated/resources/*
+*/generated/.cache/*
 /fabric/src/generated/resources/cobblemon-common.accesswidener
