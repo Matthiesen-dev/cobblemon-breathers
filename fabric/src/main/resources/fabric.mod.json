@@ -13,6 +13,9 @@
   "entrypoints": {
     "main": [
       "dev.matthiesen.fabric.cobblemon_breathers.CobblemonBreathersFabric"
+    ],
+    "client": [
+      "dev.matthiesen.fabric.cobblemon_breathers.CobblemonBreathersFabricClient"
     ]
   },
   "depends": {

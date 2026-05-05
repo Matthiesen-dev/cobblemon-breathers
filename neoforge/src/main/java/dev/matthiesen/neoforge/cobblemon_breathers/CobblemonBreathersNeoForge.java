@@ -11,10 +11,12 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
@@ -34,6 +36,11 @@ public class CobblemonBreathersNeoForge {
 
     public CobblemonBreathersNeoForge(IEventBus modBus) {
         Constants.createInfoLog("Loading for NeoForge Mod Loader");
+
+        if (FMLEnvironment.dist == Dist.CLIENT) {
+            new CobblemonBreathersNeoForgeClient(modBus);
+        }
+
         STATS.register(modBus);
         SOUND_EVENTS.register(modBus);
         BLOCKS.register(modBus);

@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public interface CobblemonBreathersPlatform {
@@ -29,4 +30,5 @@ public interface CobblemonBreathersPlatform {
     boolean isModLoaded(String modId);
     boolean isDevelopmentEnvironment();
     CreativeModeTab.Builder newCreativeTabBuilder();
+    void addItemRegistryCallback(Consumer<Item> consumer);
 }

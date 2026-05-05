@@ -2,6 +2,7 @@ package dev.matthiesen.common.cobblemon_breathers.item;
 
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Equipable;
@@ -13,6 +14,12 @@ import org.jetbrains.annotations.NotNull;
 public class BreatherItem extends Item implements Equipable {
     public BreatherItem(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    public void inventoryTick(ItemStack itemStack, Level level, Entity entity, int i, boolean bl) {
+        super.inventoryTick(itemStack, level, entity, i, bl);
+
     }
 
     @Override

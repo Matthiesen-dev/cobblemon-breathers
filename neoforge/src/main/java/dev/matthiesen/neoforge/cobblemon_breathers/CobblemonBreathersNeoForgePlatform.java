@@ -2,6 +2,7 @@ package dev.matthiesen.neoforge.cobblemon_breathers;
 
 import dev.matthiesen.common.cobblemon_breathers.platform.CobblemonBreathersPlatform;
 import net.minecraft.advancements.CriterionTrigger;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.sounds.SoundEvent;
@@ -12,7 +13,9 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLEnvironment;
+import net.neoforged.neoforge.registries.callback.AddCallback;
 
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class CobblemonBreathersNeoForgePlatform implements CobblemonBreathersPlatform {
@@ -69,5 +72,10 @@ public class CobblemonBreathersNeoForgePlatform implements CobblemonBreathersPla
     @Override
     public CreativeModeTab.Builder newCreativeTabBuilder() {
         return CreativeModeTab.builder();
+    }
+
+    @Override
+    public void addItemRegistryCallback(Consumer<Item> consumer) {
+        BuiltInRegistries.ITEM.addCallback((AddCallback<Item>) (registry, i, key, item) -> consumer.accept(item));
     }
 }

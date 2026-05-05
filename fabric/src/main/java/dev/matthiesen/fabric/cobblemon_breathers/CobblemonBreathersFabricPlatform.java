@@ -2,6 +2,7 @@ package dev.matthiesen.fabric.cobblemon_breathers;
 
 import dev.matthiesen.common.cobblemon_breathers.Constants;
 import dev.matthiesen.common.cobblemon_breathers.platform.CobblemonBreathersPlatform;
+import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.advancements.CriterionTrigger;
@@ -16,6 +17,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class CobblemonBreathersFabricPlatform implements CobblemonBreathersPlatform {
@@ -79,5 +81,11 @@ public class CobblemonBreathersFabricPlatform implements CobblemonBreathersPlatf
         final T registeredObject = Registry.register((Registry<T>) registry, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, id), object.get());
 
         return () -> registeredObject;
+    }
+
+    @Override
+    public void addItemRegistryCallback(Consumer<Item> consumer) {
+        RegistryEntryAddedCallback.event(BuiltInRegistries.ITEM)
+                .register((i, resourceLocation, item) -> consumer.accept(item));
     }
 }
