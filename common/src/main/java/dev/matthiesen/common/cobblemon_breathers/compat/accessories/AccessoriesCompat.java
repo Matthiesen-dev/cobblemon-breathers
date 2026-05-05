@@ -1,7 +1,7 @@
 package dev.matthiesen.common.cobblemon_breathers.compat.accessories;
 
 import dev.matthiesen.common.cobblemon_breathers.CobblemonBreathers;
-import dev.matthiesen.common.cobblemon_breathers.item.BreatherItem;
+import dev.matthiesen.common.cobblemon_breathers.item.AbstractReBreatherItem;
 import io.wispforest.accessories.api.AccessoriesAPI;
 
 public class AccessoriesCompat {
@@ -9,8 +9,8 @@ public class AccessoriesCompat {
 
     public static void init() {
         CobblemonBreathers.COMMON_PLATFORM.addItemRegistryCallback(item -> {
-            if (item instanceof BreatherItem breatherItem) {
-                AccessoriesAPI.registerAccessory(item, new BreatherItemAccessory(breatherItem));
+            if (item instanceof AbstractReBreatherItem breatherItem) {
+                AccessoriesAPI.registerAccessory(item, new ReBreatherItemAccessory<>(breatherItem));
             }
         });
     }

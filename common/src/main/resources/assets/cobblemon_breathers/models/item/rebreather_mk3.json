@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "cobblemon_breathers:item/rebreather_mk3"
+  },
+  "display": {
+    "head": {
+      "translation": [0, -3.75, -7],
+      "scale": [0.7, 0.7, 1]
+    }
+  }
+}

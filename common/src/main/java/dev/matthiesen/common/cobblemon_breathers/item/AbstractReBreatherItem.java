@@ -18,10 +18,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public abstract class AbstractBreatherItem extends Item implements Equipable  {
+public abstract class AbstractReBreatherItem extends Item implements Equipable  {
     private final int maxAir;
 
-    public AbstractBreatherItem(Item.Properties properties, Integer maxAir) {
+    public AbstractReBreatherItem(Item.Properties properties, Integer maxAir) {
         super(properties.component(ComponentTypesRegistry.AIR_RESERVE, maxAir));
         this.maxAir = maxAir;
     }
@@ -57,6 +57,7 @@ public abstract class AbstractBreatherItem extends Item implements Equipable  {
         evaluateEffects(player);
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     private boolean checkItemEquipped(Player player) {
         var inventory = player.getInventory();
         ItemStack helmetSlot = inventory.getArmor(3);
@@ -104,6 +105,7 @@ public abstract class AbstractBreatherItem extends Item implements Equipable  {
             }
             return;
         }
+        if (!checkItemEquipped(player)) return;
         if (currentAir > 0) {
             item.set(ComponentTypesRegistry.AIR_RESERVE, currentAir - 1);
         }

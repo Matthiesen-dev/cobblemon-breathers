@@ -3,19 +3,18 @@ package dev.matthiesen.common.cobblemon_breathers.item;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 
 import java.util.List;
 
-public class BreatherItem extends AbstractBreatherItem {
-    public static final int MAX_AIR = 300;
+public class ReBreatherMk2Item extends AbstractReBreatherItem {
+    public static final int MAX_AIR = 600;
 
     public static final List<MobEffectInstance> EFFECTS = List.of(
             new MobEffectInstance(MobEffects.WATER_BREATHING, 100, 0, false, false)
     );
 
-    public BreatherItem() {
-        super(new Item.Properties().stacksTo(1), MAX_AIR);
+    public ReBreatherMk2Item() {
+        super(new Properties().stacksTo(1), MAX_AIR);
     }
 
     @Override

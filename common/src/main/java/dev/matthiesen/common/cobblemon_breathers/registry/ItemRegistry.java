@@ -2,7 +2,7 @@ package dev.matthiesen.common.cobblemon_breathers.registry;
 
 import dev.matthiesen.common.cobblemon_breathers.CobblemonBreathers;
 import dev.matthiesen.common.cobblemon_breathers.Constants;
-import dev.matthiesen.common.cobblemon_breathers.item.BreatherItem;
+import dev.matthiesen.common.cobblemon_breathers.item.*;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -13,9 +13,10 @@ import java.util.function.Supplier;
 public class ItemRegistry {
     public static void init() {}
 
-    public static final Supplier<Item> POKE_BREATHER = registerItem("poke_breather", BreatherItem::new);
+    public static final Supplier<Item> REBREATHER_MK1 = registerItem("rebreather_mk1", ReBreatherMk1Item::new);
+    public static final Supplier<Item> REBREATHER_MK2 = registerItem("rebreather_mk2", ReBreatherMk2Item::new);
+    public static final Supplier<Item> REBREATHER_MK3 = registerItem("rebreather_mk3", ReBreatherMk3Item::new);
 
-    @SuppressWarnings("SameParameterValue")
     private static <T extends Item> Supplier<T> registerItem(String id, Supplier<T> item) {
         return CobblemonBreathers.COMMON_PLATFORM.registerItem(id, item);
     }
@@ -25,8 +26,11 @@ public class ItemRegistry {
             .registerCreativeModeTab("cobblemon_breathers", () -> CobblemonBreathers.COMMON_PLATFORM
             .newCreativeTabBuilder()
             .title(Component.translatable("itemGroup." + Constants.MOD_ID + ".cobblemon_breathers"))
-            .icon(() -> new ItemStack(ItemRegistry.POKE_BREATHER.get()))
-            .displayItems((enabledFeatures, entries) -> entries.accept(ItemRegistry.POKE_BREATHER.get())
-            )
+            .icon(() -> new ItemStack(ItemRegistry.REBREATHER_MK1.get()))
+            .displayItems((enabledFeatures, entries) -> {
+                entries.accept(ItemRegistry.REBREATHER_MK1.get());
+                entries.accept(ItemRegistry.REBREATHER_MK2.get());
+                entries.accept(ItemRegistry.REBREATHER_MK3.get());
+            })
             .build());
 }

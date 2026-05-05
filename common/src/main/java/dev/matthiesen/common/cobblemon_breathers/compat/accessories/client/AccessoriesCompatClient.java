@@ -5,6 +5,8 @@ import io.wispforest.accessories.api.client.AccessoriesRendererRegistry;
 
 public class AccessoriesCompatClient {
     public static void init() {
-        AccessoriesRendererRegistry.registerNoRenderer(ItemRegistry.POKE_BREATHER.get());
+        AccessoriesRendererRegistry.registerNoRenderer(ItemRegistry.REBREATHER_MK1.get());
+        AccessoriesRendererRegistry.registerNoRenderer(ItemRegistry.REBREATHER_MK2.get());
+        AccessoriesRendererRegistry.registerNoRenderer(ItemRegistry.REBREATHER_MK3.get());
     }
 }
