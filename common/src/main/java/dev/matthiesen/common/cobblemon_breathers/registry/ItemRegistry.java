@@ -2,6 +2,7 @@ package dev.matthiesen.common.cobblemon_breathers.registry;
 
 import dev.matthiesen.common.cobblemon_breathers.CobblemonBreathers;
 import dev.matthiesen.common.cobblemon_breathers.Constants;
+import dev.matthiesen.common.cobblemon_breathers.item.BreatherItem;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -12,7 +13,7 @@ import java.util.function.Supplier;
 public class ItemRegistry {
     public static void init() {}
 
-    public static final Supplier<Item> POKE_BREATHER = registerItem("poke_breather", () -> new Item(new Item.Properties()));
+    public static final Supplier<Item> POKE_BREATHER = registerItem("poke_breather", () -> new BreatherItem(new Item.Properties()));
 
     @SuppressWarnings("SameParameterValue")
     private static <T extends Item> Supplier<T> registerItem(String id, Supplier<T> item) {
