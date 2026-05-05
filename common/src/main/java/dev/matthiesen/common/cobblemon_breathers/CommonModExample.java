@@ -1,10 +1,10 @@
-package dev.matthiesen.common.template_cobblemon_sidemod;
+package dev.matthiesen.common.cobblemon_breathers;
 
 import com.mojang.brigadier.CommandDispatcher;
-import dev.matthiesen.common.template_cobblemon_sidemod.commands.CommandRegistry;
-import dev.matthiesen.common.template_cobblemon_sidemod.config.ConfigManager;
-import dev.matthiesen.common.template_cobblemon_sidemod.config.ModConfig;
-import dev.matthiesen.common.template_cobblemon_sidemod.permissions.ModPermissions;
+import dev.matthiesen.common.cobblemon_breathers.commands.CommandRegistry;
+import dev.matthiesen.common.cobblemon_breathers.config.ConfigManager;
+import dev.matthiesen.common.cobblemon_breathers.config.ModConfig;
+import dev.matthiesen.common.cobblemon_breathers.permissions.ModPermissions;
 import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;

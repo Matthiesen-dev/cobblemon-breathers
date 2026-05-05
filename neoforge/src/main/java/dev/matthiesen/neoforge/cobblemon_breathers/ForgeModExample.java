@@ -1,7 +1,7 @@
-package dev.matthiesen.forge.template_cobblemon_sidemod;
+package dev.matthiesen.neoforge.cobblemon_breathers;
 
-import dev.matthiesen.common.template_cobblemon_sidemod.CommonModExample;
-import dev.matthiesen.common.template_cobblemon_sidemod.Constants;
+import dev.matthiesen.common.cobblemon_breathers.CommonModExample;
+import dev.matthiesen.common.cobblemon_breathers.Constants;
 import net.minecraft.server.MinecraftServer;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
