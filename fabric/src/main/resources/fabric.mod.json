@@ -12,11 +12,12 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "dev.matthiesen.fabric.cobblemon_breathers.FabricModExample"
+      "dev.matthiesen.fabric.cobblemon_breathers.CobblemonBreathersFabric"
     ]
   },
   "depends": {
     "minecraft": "1.21.1",
-    "cobblemon": ">=1.7.3 <1.8.0"
+    "cobblemon": ">=1.7.3 <1.8.0",
+    "accessories": ">=1.1.0-beta.52+1.21.1"
   }
 }

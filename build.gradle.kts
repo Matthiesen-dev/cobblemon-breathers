@@ -20,6 +20,9 @@ allprojects {
     repositories {
         mavenCentral()
         maven("https://artefacts.cobblemon.com/releases/")
+        maven("https://maven.wispforest.io/releases")
+        maven("https://maven.su5ed.dev/releases")
+        maven("https://maven.fabricmc.net")
     }
 
     tasks {

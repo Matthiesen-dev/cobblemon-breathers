@@ -33,3 +33,10 @@ mandatory = true
 versionRange = "[1.7.3,)"
 ordering = "AFTER"
 side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "accessories"
+type = "required"
+versionRange = "[1.1.0-beta.52+1.21.1, )"
+ordering = "AFTER"
+side = "BOTH"

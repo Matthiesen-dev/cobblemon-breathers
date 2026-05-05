@@ -43,6 +43,13 @@ dependencies {
     }
     shadowBundle(project(":common", configuration = "transformProductionNeoForge"))
 
+    modImplementation("io.wispforest:accessories-neoforge:${property("accessories_version")}")
+    forgeRuntimeLibrary("blue.endless:jankson:1.2.2")
+    forgeRuntimeLibrary("io.wispforest:endec:0.1.5.1")
+    forgeRuntimeLibrary("io.wispforest.endec:gson:0.1.3.1")
+    forgeRuntimeLibrary("io.wispforest.endec:jankson:0.1.3.1")
+    forgeRuntimeLibrary("io.wispforest.endec:netty:0.1.2")
+
     testImplementation("org.junit.jupiter:junit-jupiter-api:${property("junit_version")}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${property("junit_version")}")
 }
