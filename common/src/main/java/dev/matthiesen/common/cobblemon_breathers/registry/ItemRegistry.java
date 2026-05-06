@@ -8,6 +8,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
+import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
@@ -24,6 +25,12 @@ public class ItemRegistry {
     public static final Supplier<Item> REBREATHER_MK2 = registerItem("rebreather_mk2", ReBreatherMk2Item::new);
     public static final Supplier<Item> REBREATHER_MK3 = registerItem("rebreather_mk3", ReBreatherMk3Item::new);
 
+    public static final List<Supplier<Item>> REBREATHERS = List.of(
+            REBREATHER_MK1,
+            REBREATHER_MK2,
+            REBREATHER_MK3
+    );
+
     private static <T extends Item> Supplier<T> registerItem(String id, Supplier<T> item) {
         return CobblemonBreathers.COMMON_PLATFORM.registerItem(id, item);
     }
@@ -34,10 +41,9 @@ public class ItemRegistry {
             .newCreativeTabBuilder()
             .title(Component.translatable("itemGroup." + Constants.MOD_ID + ".cobblemon_breathers"))
             .icon(() -> new ItemStack(ItemRegistry.REBREATHER_MK1.get()))
-            .displayItems((enabledFeatures, entries) -> {
-                entries.accept(ItemRegistry.REBREATHER_MK1.get());
-                entries.accept(ItemRegistry.REBREATHER_MK2.get());
-                entries.accept(ItemRegistry.REBREATHER_MK3.get());
-            })
+            .displayItems((enabledFeatures, entries) ->
+                    REBREATHERS.forEach(breather ->
+                            entries.accept(breather.get()))
+            )
             .build());
 }

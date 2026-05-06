@@ -69,7 +69,6 @@ public class CobblemonBreathersFabricPlatform implements CobblemonBreathersPlatf
         return registerSupplier(BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE, id, codec);
     }
 
-
     @Override
     public MinecraftServer server() {
         return CobblemonBreathersFabric.MC_SERVER;
