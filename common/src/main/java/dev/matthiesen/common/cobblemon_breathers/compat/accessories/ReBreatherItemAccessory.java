@@ -13,8 +13,8 @@ public record ReBreatherItemAccessory<T extends ReBreatherItem>(T item) implemen
         var entity = reference.entity();
         if (entity == null) return;
         if (!(entity instanceof Player player)) return;
-        if (!player.isInWater()) return;
         if (player.level().isClientSide()) return;
+        if (item.checkPlayerConditions(player)) return;
         item.evaluateEffects(player);
     }
 }

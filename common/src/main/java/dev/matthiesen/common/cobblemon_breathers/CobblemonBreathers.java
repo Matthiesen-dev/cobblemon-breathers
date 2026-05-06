@@ -20,7 +20,7 @@ public class CobblemonBreathers {
         Constants.createInfoLog("Initialized");
         config = new ConfigManager().loadConfig();
 
-        if (COMMON_PLATFORM.isModLoaded(AccessoriesCompat.ACCESSORIES_MOD_ID)) {
+        if (COMMON_PLATFORM.isModLoaded("accessories")) {
             AccessoriesCompat.init();
         }
 

@@ -4,16 +4,14 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import dev.matthiesen.common.cobblemon_breathers.Constants;
-import dev.matthiesen.common.cobblemon_breathers.interfaces.IConfigManager;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 
-public class ConfigManager implements IConfigManager {
+public class ConfigManager {
     public static ModConfig config;
 
-    @Override
     public ModConfig loadConfig() {
         String configFileLoc = System.getProperty("user.dir") + File.separator + "config" +
                 File.separator + Constants.MOD_ID + File.separator + "config.json";
@@ -69,7 +67,6 @@ public class ConfigManager implements IConfigManager {
         return config;
     }
 
-    @Override
     public JsonElement mergeConfigs(JsonObject defaultConfig, JsonObject fileConfig) {
         // For every entry in the default config, check if it exists in the file config
         Constants.createInfoLog("Checking for config merge.");
@@ -96,7 +93,6 @@ public class ConfigManager implements IConfigManager {
         return fileConfig;
     }
 
-    @Override
     public void saveConfig() {
         try {
             String configFileLoc = System.getProperty("user.dir") + File.separator + "config" +

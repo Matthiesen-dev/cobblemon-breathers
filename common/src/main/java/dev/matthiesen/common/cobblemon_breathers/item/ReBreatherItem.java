@@ -1,5 +1,6 @@
 package dev.matthiesen.common.cobblemon_breathers.item;
 
+import dev.matthiesen.common.cobblemon_breathers.CobblemonBreathers;
 import dev.matthiesen.common.cobblemon_breathers.registry.ComponentTypesRegistry;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
@@ -21,6 +22,9 @@ import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 
 public class ReBreatherItem extends Item implements Equipable {
+    private final boolean ambientEffects;
+    private final boolean visibleEffects;
+    private final boolean effectIcons;
     private final int baseMaxAir;
     private final List<MobEffectInstance> effects;
 
@@ -28,6 +32,10 @@ public class ReBreatherItem extends Item implements Equipable {
         super(getItemProps(maxAir));
         this.baseMaxAir = maxAir;
         this.effects = effectBuilder.apply(new EffectBuilder()).build();
+        this.ambientEffects = CobblemonBreathers.config.reBreatherItemConfig.effectsConfig.showAmbient;
+        this.visibleEffects = CobblemonBreathers.config.reBreatherItemConfig.effectsConfig.visible;
+        // Investigate why this seems to do nothing...
+        this.effectIcons = false;
     }
 
     @SuppressWarnings("unchecked")
@@ -39,7 +47,7 @@ public class ReBreatherItem extends Item implements Equipable {
         private final List<MobEffectInstance> effects = new ArrayList<>();
 
         public EffectBuilder addEffect(Holder<MobEffect> effect) {
-            effects.add(new MobEffectInstance(effect, 100, 0, false, false));
+            effects.add(new MobEffectInstance(effect));
             return this;
         }
 
@@ -116,7 +124,7 @@ public class ReBreatherItem extends Item implements Equipable {
     public void evaluateEffects(Player player) {
         for (MobEffectInstance effect : effects) {
             if (!player.hasEffect(effect.getEffect())) {
-                player.addEffect(new MobEffectInstance(effect.getEffect(), effect.getDuration(), effect.getAmplifier(), effect.isAmbient(), effect.isVisible()));
+                player.addEffect(new MobEffectInstance(effect.getEffect(), 100, 0, ambientEffects, visibleEffects, effectIcons));
             }
         }
     }
@@ -137,7 +145,7 @@ public class ReBreatherItem extends Item implements Equipable {
         int maxAir = item.getOrDefault(ComponentTypesRegistry.MAX_AIR, 0);
         if (checkPlayerConditions(player) || checkAntiConditions(player)) {
             if (currentAir < maxAir) {
-                var toAddToCurrent = currentAir + 50;
+                var toAddToCurrent = currentAir + CobblemonBreathers.config.reBreatherItemConfig.airSupplyRecovery;
                 if (toAddToCurrent > maxAir) toAddToCurrent = maxAir;
                 item.set(ComponentTypesRegistry.AIR_RESERVE, toAddToCurrent);
             }
