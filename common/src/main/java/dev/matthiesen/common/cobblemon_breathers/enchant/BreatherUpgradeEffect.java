@@ -20,18 +20,15 @@ public record BreatherUpgradeEffect() implements EnchantmentEntityEffect {
         if (entity.getType() != EntityType.PLAYER) return;
         int maxAir = item.getMaxAir();
         switch (enchantLevel) {
-            case 1: {
-                context.itemStack().set(ComponentTypesRegistry.MAX_AIR, maxAir + 200);
-            }
-            case 2: {
-                context.itemStack().set(ComponentTypesRegistry.MAX_AIR, maxAir + 800);
-            }
-            case 3: {
-                context.itemStack().set(ComponentTypesRegistry.MAX_AIR, maxAir + 2000);
-            }
-            default: {
-            }
+            case 1 -> setMaxAir(context, maxAir, 200);
+            case 2 -> setMaxAir(context, maxAir, 800);
+            case 3 -> setMaxAir(context, maxAir, 2000);
+            default -> {}
         }
+    }
+
+    public static void setMaxAir(EnchantedItemInUse context, int maxAir, int Addition) {
+        context.itemStack().set(ComponentTypesRegistry.MAX_AIR, maxAir + Addition);
     }
 
     @Override
