@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "b": {
+      "item": "minecraft:glass_bottle"
+    },
+    "c": {
+      "item": "minecraft:copper_ingot"
+    },
+    "s": {
+      "item": "minecraft:string"
+    },
+    "w": {
+      "item": "cobblemon:water_stone"
+    }
+  },
+  "pattern": [
+    " s ",
+    "cwc",
+    " b "
+  ],
+  "result": {
+    "count": 1,
+    "id": "cobblemon_breathers:rebreather_mk1"
+  }
+}

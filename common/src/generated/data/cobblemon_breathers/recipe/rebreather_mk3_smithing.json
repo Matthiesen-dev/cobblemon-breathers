@@ -1,17 +1,16 @@
 {
   "type": "minecraft:smithing_transform",
-  "group": "misc",
-  "base": {
-    "item": "cobblemon_breathers:rebreather_mk2"
-  },
   "addition": {
     "item": "minecraft:netherite_ingot"
   },
-  "template": {
-    "item": "minecraft:conduit"
+  "base": {
+    "item": "cobblemon_breathers:rebreather_mk2"
   },
   "result": {
-    "id": "cobblemon_breathers:rebreather_mk3",
-    "count": 1
+    "count": 1,
+    "id": "cobblemon_breathers:rebreather_mk3"
+  },
+  "template": {
+    "item": "minecraft:conduit"
   }
 }

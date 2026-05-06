@@ -1,6 +1,5 @@
 package dev.matthiesen.fabric.cobblemon_breathers.datagen;
 
-import dev.matthiesen.common.cobblemon_breathers.registry.ItemRegistry;
 import dev.matthiesen.common.cobblemon_breathers.registry.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -17,8 +16,11 @@ public class ItemTagProvider extends FabricTagProvider<Item> {
 
     @Override
     protected void addTags(HolderLookup.Provider wrapperLookup) {
-        getOrCreateTagBuilder(ModTags.Items.BREATHERS).add(ItemRegistry.REBREATHER_MK1.get()).add(ItemRegistry.REBREATHER_MK2.get()).add(ItemRegistry.REBREATHER_MK3.get());
-        getOrCreateTagBuilder(ModTags.ACCESSORIES.FACE).addTag(ModTags.Items.BREATHERS);
-        getOrCreateTagBuilder(ModTags.ACCESSORIES.HEAD).addTag(ModTags.Items.BREATHERS);
+        ModTags.TAG_ITEMS.forEach((tag, item) -> {
+            getOrCreateTagBuilder(tag).add(item);
+        });
+        ModTags.TAG_LISTS.forEach((parent, children) -> {
+            getOrCreateTagBuilder(parent).addTag(children);
+        });
     }
 }

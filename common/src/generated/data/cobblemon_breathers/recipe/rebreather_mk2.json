@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "b": {
+      "item": "minecraft:bucket"
+    },
+    "d": {
+      "item": "minecraft:diamond"
+    },
+    "s": {
+      "item": "cobblemon:mystic_water"
+    },
+    "w": {
+      "item": "cobblemon_breathers:rebreather_mk1"
+    }
+  },
+  "pattern": [
+    " s ",
+    "dwd",
+    " b "
+  ],
+  "result": {
+    "count": 1,
+    "id": "cobblemon_breathers:rebreather_mk2"
+  }
+}
