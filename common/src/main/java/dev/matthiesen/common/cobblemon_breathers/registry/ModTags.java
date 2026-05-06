@@ -10,6 +10,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Supplier;
 
 public class ModTags {
     public static class Items {
@@ -44,11 +45,7 @@ public class ModTags {
     public static Map<TagKey<Enchantment>, ResourceKey<Enchantment>> ENCHANTMENTS = new HashMap<>();
 
     static {
-        TAG_ITEMS.put(Items.BREATHERS, new Item[]{
-                ItemRegistry.REBREATHER_MK1.get(),
-                ItemRegistry.REBREATHER_MK2.get(),
-                ItemRegistry.REBREATHER_MK3.get(),
-        });
+        TAG_ITEMS.put(Items.BREATHERS, ItemRegistry.REBREATHERS.stream().map(Supplier::get).toArray(Item[]::new));
 
         TAG_LISTS.put(ACCESSORIES.FACE, Items.BREATHERS);
         TAG_LISTS.put(ACCESSORIES.HAT, Items.BREATHERS);

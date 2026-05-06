@@ -11,27 +11,6 @@ public class Constants {
     public static ResourceLocation modResource(String path) {
         return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
     }
-    public static String modResourcePath(String path) {
-        return Constants.MOD_ID + ":" + path;
-    }
-
-    public enum PERMISSION_LEVELS {
-        NONE(0),
-        SPAWN_PROTECTION_BYPASS(1),
-        CHEAT_COMMANDS_AND_COMMAND_BLOCKS(2),
-        MULTIPLAYER_MANAGEMENT(3),
-        ALL_COMMANDS(4);
-
-        private final int level;
-
-        PERMISSION_LEVELS(int level) {
-            this.level = level;
-        }
-
-        public int getLevel() {
-            return level;
-        }
-    }
 
     public static Logger LOGGER = LogManager.getLogger(ModName);
 

@@ -1,7 +1,7 @@
 package dev.matthiesen.common.cobblemon_breathers.enchant;
 
 import com.mojang.serialization.MapCodec;
-import dev.matthiesen.common.cobblemon_breathers.item.AbstractReBreatherItem;
+import dev.matthiesen.common.cobblemon_breathers.item.ReBreatherItem;
 import dev.matthiesen.common.cobblemon_breathers.registry.ComponentTypesRegistry;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
@@ -16,7 +16,7 @@ public record BreatherUpgradeEffect() implements EnchantmentEntityEffect {
 
     @Override
     public void apply(ServerLevel world, int enchantLevel, EnchantedItemInUse context, Entity entity, Vec3 pos) {
-        if (!(context.itemStack().getItem() instanceof AbstractReBreatherItem item)) return;
+        if (!(context.itemStack().getItem() instanceof ReBreatherItem item)) return;
         if (entity.getType() != EntityType.PLAYER) return;
         int maxAir = item.getMaxAir();
         switch (enchantLevel) {

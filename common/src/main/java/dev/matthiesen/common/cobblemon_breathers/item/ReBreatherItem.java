@@ -17,16 +17,22 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 
-public abstract class AbstractReBreatherItem extends Item implements Equipable {
+public class ReBreatherItem extends Item implements Equipable {
     private final int baseMaxAir;
     private final List<MobEffectInstance> effects;
 
-    public AbstractReBreatherItem(Integer maxAir, UnaryOperator<EffectBuilder> effectBuilder) {
+    public ReBreatherItem(Integer maxAir, UnaryOperator<EffectBuilder> effectBuilder) {
         super(getItemProps(maxAir));
         this.baseMaxAir = maxAir;
         this.effects = effectBuilder.apply(new EffectBuilder()).build();
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T extends Item> Supplier<T> create(Integer maxAir, UnaryOperator<EffectBuilder> effectBuilder) {
+        return () -> (T) new ReBreatherItem(maxAir, effectBuilder);
     }
 
     public static class EffectBuilder {
@@ -69,8 +75,12 @@ public abstract class AbstractReBreatherItem extends Item implements Equipable {
     @SuppressWarnings("unused")
     public void runPlayerActions(Player player) {}
 
+    public boolean checkAntiConditions(Player player) {
+        return player.isCreative() || player.isSpectator();
+    }
+
     public boolean checkPlayerConditions(Player player) {
-        return player.isInWater() || player.isCreative() || player.isSpectator();
+        return !player.isInWater() || checkAntiConditions(player);
     }
 
     @Override
@@ -78,7 +88,7 @@ public abstract class AbstractReBreatherItem extends Item implements Equipable {
         super.inventoryTick(itemStack, level, entity, i, bl);
         if (!(entity instanceof Player player)) return;
         tickAirSupply(itemStack, player);
-        if (!checkPlayerConditions(player)) return;
+        if (checkPlayerConditions(player)) return;
         if (!checkItemEquipped(player)) return;
         runPlayerActions(player);
         evaluateEffects(player);
@@ -125,7 +135,7 @@ public abstract class AbstractReBreatherItem extends Item implements Equipable {
         if (player.tickCount % 20 != 0) return;
         int currentAir = item.getOrDefault(ComponentTypesRegistry.AIR_RESERVE, 0);
         int maxAir = item.getOrDefault(ComponentTypesRegistry.MAX_AIR, 0);
-        if (!player.isInWater()) {
+        if (checkPlayerConditions(player) || checkAntiConditions(player)) {
             if (currentAir < maxAir) {
                 var toAddToCurrent = currentAir + 50;
                 if (toAddToCurrent > maxAir) toAddToCurrent = maxAir;
