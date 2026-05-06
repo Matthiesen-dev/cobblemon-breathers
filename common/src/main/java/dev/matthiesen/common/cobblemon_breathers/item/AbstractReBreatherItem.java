@@ -70,7 +70,7 @@ public abstract class AbstractReBreatherItem extends Item implements Equipable {
     public void runPlayerActions(Player player) {}
 
     public boolean checkPlayerConditions(Player player) {
-        return player.isInWater();
+        return player.isInWater() || player.isCreative() || player.isSpectator();
     }
 
     @Override

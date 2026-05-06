@@ -2,7 +2,6 @@ package dev.matthiesen.common.cobblemon_breathers.compat.accessories.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.datafixers.util.Pair;
-import com.mojang.math.Axis;
 import io.wispforest.accessories.api.client.Side;
 import io.wispforest.accessories.api.client.SimpleAccessoryRenderer;
 import io.wispforest.accessories.api.slot.SlotReference;
@@ -35,11 +34,10 @@ public class ReBreatherRenderer implements SimpleAccessoryRenderer {
         poseStack.scale(1 / 16f, 1 / 16f, 1 / 16f);
         poseStack.translate(
                 xPercent != null ? Mth.lerp((-xPercent.doubleValue() + 1) / 2, aabb.getFirst().x, aabb.getSecond().x) : 0,
-                yPercent != null ? (Mth.lerp((-yPercent.doubleValue() + 1) / 2, aabb.getFirst().y, aabb.getSecond().y) + 2.4) : 0,
+                yPercent != null ? Mth.lerp((-yPercent.doubleValue() + 1) / 2, aabb.getFirst().y, aabb.getSecond().y) + 2.8 : 0,
                 zPercent != null ? Mth.lerp((-zPercent.doubleValue() + 1) / 2, aabb.getFirst().z, aabb.getSecond().z) - 0.5 : 0
         );
-        poseStack.scale(7, 7, 8);
-        poseStack.mulPose(Axis.XP.rotationDegrees(180));
+        poseStack.scale(8, 8, 8);
     }
 
     @SuppressWarnings("ConstantConditions")
