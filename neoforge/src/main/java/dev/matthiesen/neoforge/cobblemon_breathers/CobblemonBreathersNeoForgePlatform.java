@@ -1,5 +1,6 @@
 package dev.matthiesen.neoforge.cobblemon_breathers;
 
+import com.mojang.serialization.MapCodec;
 import dev.matthiesen.common.cobblemon_breathers.platform.CobblemonBreathersPlatform;
 import net.minecraft.advancements.CriterionTrigger;
 import net.minecraft.core.component.DataComponentType;
@@ -9,6 +10,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -58,6 +60,11 @@ public class CobblemonBreathersNeoForgePlatform implements CobblemonBreathersPla
     @Override
     public <T extends DataComponentType<?>> Supplier<T> registerComponentType(String id, Supplier<T> component) {
         return CobblemonBreathersNeoForge.COMPONENT_TYPES.register(id, component);
+    }
+
+    @Override
+    public <T extends MapCodec<? extends EnchantmentEntityEffect>> Supplier<T> registerEntityEffects(String name, Supplier<T> codec) {
+        return CobblemonBreathersNeoForge.ENTITY_EFFECTS.register(name, codec);
     }
 
     @Override

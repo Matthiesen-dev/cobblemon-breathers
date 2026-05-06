@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_rebreather_mk2": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cobblemon_breathers:rebreather_mk2"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cobblemon_breathers:rebreather_mk3_smithing"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_rebreather_mk2"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cobblemon_breathers:rebreather_mk3_smithing"
+    ]
+  }
+}

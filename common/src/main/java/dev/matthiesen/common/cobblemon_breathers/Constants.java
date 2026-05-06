@@ -11,6 +11,9 @@ public class Constants {
     public static ResourceLocation modResource(String path) {
         return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
     }
+    public static String modResourcePath(String path) {
+        return Constants.MOD_ID + ":" + path;
+    }
 
     public enum PERMISSION_LEVELS {
         NONE(0),

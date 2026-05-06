@@ -3,6 +3,7 @@ package dev.matthiesen.common.cobblemon_breathers;
 import dev.matthiesen.common.cobblemon_breathers.compat.accessories.AccessoriesCompat;
 import dev.matthiesen.common.cobblemon_breathers.config.ConfigManager;
 import dev.matthiesen.common.cobblemon_breathers.config.ModConfig;
+import dev.matthiesen.common.cobblemon_breathers.registry.EnchantmentEffectsRegistry;
 import dev.matthiesen.common.cobblemon_breathers.platform.CobblemonBreathersPlatform;
 import dev.matthiesen.common.cobblemon_breathers.registry.ComponentTypesRegistry;
 import dev.matthiesen.common.cobblemon_breathers.registry.CriterionTriggerRegistry;
@@ -31,6 +32,7 @@ public class CobblemonBreathers {
         ComponentTypesRegistry.init();
         ItemRegistry.init();
         CriterionTriggerRegistry.init();
+        EnchantmentEffectsRegistry.init();
     }
 
     public static void onStartup() {

@@ -14,6 +14,10 @@ public class ComponentTypesRegistry {
             builder -> builder.persistent(ExtraCodecs.POSITIVE_INT)
     );
 
+    public static final DataComponentType<Integer> MAX_AIR = register("max_air",
+            builder -> builder.persistent(ExtraCodecs.POSITIVE_INT)
+    );
+
     @SuppressWarnings("SameParameterValue")
     private static <T> DataComponentType<T> register(String string, UnaryOperator<DataComponentType.Builder<T>> unaryOperator) {
         return register(string, () -> unaryOperator.apply(DataComponentType.builder()).build()).get();

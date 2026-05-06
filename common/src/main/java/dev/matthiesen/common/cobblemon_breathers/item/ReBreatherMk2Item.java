@@ -15,7 +15,7 @@ public class ReBreatherMk2Item extends AbstractReBreatherItem {
     );
 
     public ReBreatherMk2Item() {
-        super(new Properties().stacksTo(1), MAX_AIR);
+        super(MAX_AIR);
     }
 
     @Override

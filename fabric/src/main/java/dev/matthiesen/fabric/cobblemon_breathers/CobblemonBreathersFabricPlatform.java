@@ -1,5 +1,6 @@
 package dev.matthiesen.fabric.cobblemon_breathers;
 
+import com.mojang.serialization.MapCodec;
 import dev.matthiesen.common.cobblemon_breathers.Constants;
 import dev.matthiesen.common.cobblemon_breathers.platform.CobblemonBreathersPlatform;
 import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
@@ -14,6 +15,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -61,6 +63,12 @@ public class CobblemonBreathersFabricPlatform implements CobblemonBreathersPlatf
     public <T extends DataComponentType<?>> Supplier<T> registerComponentType(String id, Supplier<T> component) {
         return registerSupplier(BuiltInRegistries.DATA_COMPONENT_TYPE, id, component);
     }
+
+    @Override
+    public <T extends MapCodec<? extends EnchantmentEntityEffect>> Supplier<T> registerEntityEffects(String id, Supplier<T> codec) {
+        return registerSupplier(BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE, id, codec);
+    }
+
 
     @Override
     public MinecraftServer server() {

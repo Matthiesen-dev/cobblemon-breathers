@@ -9,21 +9,33 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Equipable;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public abstract class AbstractReBreatherItem extends Item implements Equipable  {
-    private final int maxAir;
+public abstract class AbstractReBreatherItem extends Item implements Equipable {
+    private final int baseMaxAir;
 
-    public AbstractReBreatherItem(Item.Properties properties, Integer maxAir) {
-        super(properties.component(ComponentTypesRegistry.AIR_RESERVE, maxAir));
-        this.maxAir = maxAir;
+    public AbstractReBreatherItem(Integer maxAir) {
+        super(new Item.Properties().stacksTo(1)
+                .component(ComponentTypesRegistry.AIR_RESERVE, maxAir)
+                .component(ComponentTypesRegistry.MAX_AIR, maxAir)
+        );
+        this.baseMaxAir = maxAir;
+    }
+
+    public int getMaxAir() {
+        return baseMaxAir;
+    }
+
+    public boolean isEnchantable(ItemStack arg) {
+        return arg.getCount() == 1;
+    }
+
+    public int getEnchantmentValue() {
+        return 1;
     }
 
     /**
@@ -97,6 +109,7 @@ public abstract class AbstractReBreatherItem extends Item implements Equipable  
     public void tickAirSupply(ItemStack item, Player player) {
         if (player.tickCount % 20 != 0) return;
         int currentAir = item.getOrDefault(ComponentTypesRegistry.AIR_RESERVE, 0);
+        int maxAir = item.getOrDefault(ComponentTypesRegistry.MAX_AIR, 0);
         if (!player.isInWater()) {
             if (currentAir < maxAir) {
                 var toAddToCurrent = currentAir + 50;
@@ -133,12 +146,14 @@ public abstract class AbstractReBreatherItem extends Item implements Equipable  
     @Override
     public int getBarWidth(ItemStack itemStack) {
         int currentAir = itemStack.getOrDefault(ComponentTypesRegistry.AIR_RESERVE, 0);
-        return Math.round((float)currentAir * 13.0F / (float)this.maxAir);
+        int maxAir = itemStack.getOrDefault(ComponentTypesRegistry.MAX_AIR, 0);
+        return Math.round((float)currentAir * 13.0F / (float)maxAir);
     }
 
     @Override
     public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
         int currentAir = itemStack.getOrDefault(ComponentTypesRegistry.AIR_RESERVE, 0);
+        int maxAir = itemStack.getOrDefault(ComponentTypesRegistry.MAX_AIR, 0);
         list.add(Component.translatable("airSupply.cobblemon_breathers.current_air", currentAir, maxAir).withStyle(ChatFormatting.BLUE));
     }
 }

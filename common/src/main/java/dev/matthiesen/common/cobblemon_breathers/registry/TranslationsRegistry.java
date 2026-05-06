@@ -14,6 +14,9 @@ public class TranslationsRegistry {
         EN_TRANSLATIONS.put(newAirSupply("current_air"), "Current air supply: %s/%s seconds");
         EN_TRANSLATIONS.put(newAirSupply("supply_low"), "Air supply low! %s Seconds left!");
         EN_TRANSLATIONS.put(newAirSupply("supply_depleted"), "Air supply depleted! You are suffocating!");
+
+        // Enchantment Labels
+        EN_TRANSLATIONS.put(newEnchantment("breather_upgrade"), "Breather Upgrade");
     }
 
     @SuppressWarnings("SameParameterValue")
@@ -23,5 +26,10 @@ public class TranslationsRegistry {
 
     private static String newAirSupply(String name) {
         return "airSupply.cobblemon_breathers." + name;
+    }
+
+    @SuppressWarnings("SameParameterValue")
+    private static String newEnchantment(String name) {
+        return "enchantment.cobblemon_breathers." + name;
     }
 }

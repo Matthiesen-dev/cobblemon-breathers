@@ -1,5 +1,6 @@
 package dev.matthiesen.neoforge.cobblemon_breathers;
 
+import com.mojang.serialization.MapCodec;
 import dev.matthiesen.common.cobblemon_breathers.CobblemonBreathers;
 import dev.matthiesen.common.cobblemon_breathers.Constants;
 import net.minecraft.advancements.CriterionTrigger;
@@ -10,6 +11,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.api.distmarker.Dist;
@@ -34,6 +36,7 @@ public class CobblemonBreathersNeoForge {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(Registries.ITEM, Constants.MOD_ID);
     public static final DeferredRegister<CriterionTrigger<?>> ADVANCEMENT_TRIGGERS = DeferredRegister.create(Registries.TRIGGER_TYPE, Constants.MOD_ID);
     public static final DeferredRegister<ResourceLocation> STATS = DeferredRegister.create(Registries.CUSTOM_STAT, Constants.MOD_ID);
+    public static final DeferredRegister<MapCodec<? extends EnchantmentEntityEffect>> ENTITY_EFFECTS = DeferredRegister.create(Registries.ENCHANTMENT_ENTITY_EFFECT_TYPE, Constants.MOD_ID);
     public static MinecraftServer MC_SERVER;
 
     public CobblemonBreathersNeoForge(IEventBus modBus) {
@@ -51,6 +54,7 @@ public class CobblemonBreathersNeoForge {
         CREATIVE_TABS.register(modBus);
         ITEMS.register(modBus);
         ADVANCEMENT_TRIGGERS.register(modBus);
+        ENTITY_EFFECTS.register(modBus);
         CobblemonBreathers.initialize();
         NeoForge.EVENT_BUS.register(this);
     }

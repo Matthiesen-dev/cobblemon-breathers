@@ -1,0 +1,31 @@
+{
+  "anvil_cost": 2,
+  "description": {
+    "translate": "enchantment.cobblemon_breathers.breather_upgrade"
+  },
+  "effects": {
+    "minecraft:tick": [
+      {
+        "effect": {
+          "type": "cobblemon_breathers:breather_upgrade"
+        }
+      }
+    ]
+  },
+  "exclusive_set": "#minecraft:in_enchanting_table",
+  "max_cost": {
+    "base": 25,
+    "per_level_above_first": 9
+  },
+  "max_level": 3,
+  "min_cost": {
+    "base": 5,
+    "per_level_above_first": 7
+  },
+  "primary_items": "#cobblemon_breathers:breathers",
+  "slots": [
+    "any"
+  ],
+  "supported_items": "#cobblemon_breathers:breathers",
+  "weight": 5
+}
