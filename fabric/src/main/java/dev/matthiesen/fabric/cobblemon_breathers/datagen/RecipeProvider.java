@@ -1,6 +1,6 @@
 package dev.matthiesen.fabric.cobblemon_breathers.datagen;
 
-import dev.matthiesen.common.cobblemon_breathers.registry.RecipeRegistry;
+import dev.matthiesen.common.cobblemon_breathers.datagen.RecipeRegistry;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.core.HolderLookup;

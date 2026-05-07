@@ -4,7 +4,10 @@ import dev.matthiesen.common.cobblemon_breathers.compat.accessories.client.Acces
 
 public class CobblemonBreathersClient {
     public static void init() {
+        Constants.createInfoLog("Initializing client...");
+
         if (CobblemonBreathers.COMMON_PLATFORM.isModLoaded("accessories")) {
+            Constants.createInfoLog("Accessories mod detected, initializing client compatibility...");
             AccessoriesCompatClient.init();
         }
     }

@@ -1,6 +1,6 @@
 package dev.matthiesen.fabric.cobblemon_breathers.datagen;
 
-import dev.matthiesen.common.cobblemon_breathers.registry.ModTags;
+import dev.matthiesen.common.cobblemon_breathers.datagen.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.core.HolderLookup;

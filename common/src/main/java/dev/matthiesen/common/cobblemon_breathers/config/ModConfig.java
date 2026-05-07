@@ -12,6 +12,9 @@ public class ModConfig {
     public BreatherUpgradeEnchantConfig breatherUpgradeEnchantConfig = new BreatherUpgradeEnchantConfig();
 
     public static class BreatherUpgradeEnchantConfig {
+        @SerializedName("disableEnchantmentEffect")
+        public boolean disableEnchantmentEffect = false;
+
         @SerializedName("levelOneAirAddition")
         public int levelOneAirAddition = 200;
 

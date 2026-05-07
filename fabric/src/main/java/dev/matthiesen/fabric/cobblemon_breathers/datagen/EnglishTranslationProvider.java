@@ -1,7 +1,7 @@
 package dev.matthiesen.fabric.cobblemon_breathers.datagen;
 
 import dev.matthiesen.common.cobblemon_breathers.registry.ItemRegistry;
-import dev.matthiesen.common.cobblemon_breathers.registry.TranslationsRegistry;
+import dev.matthiesen.common.cobblemon_breathers.datagen.TranslationsRegistry;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.core.HolderLookup;

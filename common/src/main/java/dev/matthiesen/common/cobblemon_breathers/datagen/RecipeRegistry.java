@@ -1,6 +1,7 @@
-package dev.matthiesen.common.cobblemon_breathers.registry;
+package dev.matthiesen.common.cobblemon_breathers.datagen;
 
 import com.cobblemon.mod.common.CobblemonItems;
+import dev.matthiesen.common.cobblemon_breathers.registry.ItemRegistry;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;

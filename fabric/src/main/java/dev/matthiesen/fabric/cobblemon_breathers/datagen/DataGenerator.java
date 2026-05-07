@@ -1,6 +1,6 @@
 package dev.matthiesen.fabric.cobblemon_breathers.datagen;
 
-import dev.matthiesen.common.cobblemon_breathers.registry.EnchantmentsRegistry;
+import dev.matthiesen.common.cobblemon_breathers.datagen.EnchantmentsRegistry;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.minecraft.core.RegistrySetBuilder;

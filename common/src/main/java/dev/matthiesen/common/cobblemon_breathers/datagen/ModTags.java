@@ -1,6 +1,7 @@
-package dev.matthiesen.common.cobblemon_breathers.registry;
+package dev.matthiesen.common.cobblemon_breathers.datagen;
 
 import dev.matthiesen.common.cobblemon_breathers.Constants;
+import dev.matthiesen.common.cobblemon_breathers.registry.ItemRegistry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;

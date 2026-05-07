@@ -21,6 +21,7 @@ public class CobblemonBreathers {
         config = new ConfigManager().loadConfig();
 
         if (COMMON_PLATFORM.isModLoaded("accessories")) {
+            Constants.createInfoLog("Accessories mod detected, initializing compatibility");
             AccessoriesCompat.init();
         }
 

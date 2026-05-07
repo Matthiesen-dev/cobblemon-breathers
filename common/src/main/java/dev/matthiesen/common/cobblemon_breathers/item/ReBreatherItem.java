@@ -93,7 +93,6 @@ public class ReBreatherItem extends Item implements Equipable {
 
     @Override
     public void inventoryTick(ItemStack itemStack, Level level, Entity entity, int i, boolean bl) {
-        super.inventoryTick(itemStack, level, entity, i, bl);
         if (!(entity instanceof Player player)) return;
         tickAirSupply(itemStack, player);
         if (checkPlayerConditions(player)) return;

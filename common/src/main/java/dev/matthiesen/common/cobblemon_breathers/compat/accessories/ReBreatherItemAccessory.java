@@ -9,12 +9,11 @@ import net.minecraft.world.item.ItemStack;
 public record ReBreatherItemAccessory<T extends ReBreatherItem>(T item) implements Accessory {
     @Override
     public void tick(ItemStack stack, SlotReference reference) {
-        Accessory.super.tick(stack, reference);
         var entity = reference.entity();
-        if (entity == null) return;
         if (!(entity instanceof Player player)) return;
         if (player.level().isClientSide()) return;
         if (item.checkPlayerConditions(player)) return;
+        item.runPlayerActions(player);
         item.evaluateEffects(player);
     }
 }

@@ -1,4 +1,4 @@
-package dev.matthiesen.common.cobblemon_breathers.registry;
+package dev.matthiesen.common.cobblemon_breathers.datagen;
 
 import java.util.HashMap;
 import java.util.Map;

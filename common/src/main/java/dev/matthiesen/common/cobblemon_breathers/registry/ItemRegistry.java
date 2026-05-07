@@ -15,8 +15,9 @@ import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 
 public class ItemRegistry {
-
-    public static void init() { }
+    public static void init() {
+        Constants.createInfoLog("Registering items...");
+    }
 
     public static final Map<String, String> EN_TRANSLATION_MAP = Map.of(
             "rebreather_mk1", "ReBreather Mk1",

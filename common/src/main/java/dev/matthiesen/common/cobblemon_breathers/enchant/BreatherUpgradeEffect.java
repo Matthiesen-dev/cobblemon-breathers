@@ -18,6 +18,7 @@ public record BreatherUpgradeEffect() implements EnchantmentEntityEffect {
     @Override
     public void apply(ServerLevel world, int enchantLevel, EnchantedItemInUse context, Entity entity, Vec3 pos) {
         if (!(context.itemStack().getItem() instanceof ReBreatherItem item)) return;
+        if (CobblemonBreathers.config.breatherUpgradeEnchantConfig.disableEnchantmentEffect) return;
         if (entity.getType() != EntityType.PLAYER) return;
         int maxAir = item.getMaxAir();
         switch (enchantLevel) {
