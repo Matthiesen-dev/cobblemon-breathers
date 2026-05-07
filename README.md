@@ -6,6 +6,12 @@ The first tier, the ReBreather Mk1 grants the player the Water Breathing Effect 
 The second tier, the ReBreather Mk2 grants the player the Water Breathing and Night Vision Effects while underwater for 10 minutes (Configurable). without finding an air bubble.
 The third tier, the ReBreather Mk3 grants the player the Conduit Power Effect while underwater for 15 minutes (Configurable) without finding an air bubble.
 
+## Requirements
+- [Cobblemon 1.7.3+1.21.1](https://modrinth.com/mod/cobblemon)
+
+### Optional Dependencies
+- [Accessories](https://modrinth.com/mod/accessories) - For equipping the ReBreathers in an accessory slot.
+
 ## Obtaining ReBreathers
 
 The ReBreathers can be found in the Creative Inventory under the "Cobblemon Breathers" tab. They can also be obtained through the crafting recipes listed below. 
