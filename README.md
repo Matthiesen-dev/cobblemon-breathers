@@ -4,7 +4,7 @@ This mod adds a new set of Items to your Cobblemon world, ReBreathers. These ite
 
 The first tier, the ReBreather Mk1 grants the player the Water Breathing Effect while underwater for 5 minutes (Configurable) without finding an air bubble. 
 The second tier, the ReBreather Mk2 grants the player the Water Breathing and Night Vision Effects while underwater for 10 minutes (Configurable). without finding an air bubble.
-The third tier, the ReBreather Mk3 grants the player the Conduit Power Effect while underwater for 15 minutes (Configurable) without finding an air bubble.
+The third tier, the ReBreather Mk3 grants the player the Conduit Power Effect while underwater for 20 minutes (Configurable) without finding an air bubble.
 
 ## Requirements
 - [Cobblemon 1.7.3+1.21.1](https://modrinth.com/mod/cobblemon)
