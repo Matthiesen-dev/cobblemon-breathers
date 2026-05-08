@@ -168,13 +168,12 @@ public class ReBreatherItem extends Item implements Equipable {
         if (currentAir > 0) {
             item.set(ComponentTypesRegistry.AIR_RESERVE, ensureMinimumValue(currentAir - 1));
         }
-        boolean under10PercentAir = currentAir <= (maxAir * 0.1);
-        if (under10PercentAir && currentAir > 0) {
+        boolean under100Air = currentAir <= 100;
+        if (under100Air && currentAir > 0) {
             player.displayClientMessage(Component.translatable("airSupply.cobblemon_breathers.supply_low", currentAir).withStyle(ChatFormatting.RED), true);
         }
         if (currentAir == 0) {
             player.displayClientMessage(Component.translatable("airSupply.cobblemon_breathers.supply_depleted").withStyle(ChatFormatting.RED), true);
-            player.hurt(player.damageSources().drown(), 2.0F);
         }
     }
 
