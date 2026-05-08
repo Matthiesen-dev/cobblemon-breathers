@@ -14,7 +14,7 @@ public class ComponentTypesRegistry {
     }
 
     public static final DataComponentType<Integer> AIR_RESERVE = register("air_reserve",
-            builder -> builder.persistent(ExtraCodecs.POSITIVE_INT)
+            builder -> builder.persistent(ExtraCodecs.NON_NEGATIVE_INT)
     );
 
     public static final DataComponentType<Integer> MAX_AIR = register("max_air",
