@@ -7,9 +7,8 @@ import io.wispforest.accessories.api.AccessoriesAPI;
 public class AccessoriesCompat {
     public static void init() {
         CobblemonBreathers.COMMON_PLATFORM.addItemRegistryCallback(item -> {
-            if (item instanceof ReBreatherItem breatherItem) {
+            if (item instanceof ReBreatherItem breatherItem)
                 AccessoriesAPI.registerAccessory(item, new ReBreatherItemAccessory<>(breatherItem));
-            }
         });
     }
 }

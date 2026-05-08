@@ -1,13 +1,15 @@
 package dev.matthiesen.common.cobblemon_breathers.item;
 
 import dev.matthiesen.common.cobblemon_breathers.CobblemonBreathers;
+import dev.matthiesen.common.cobblemon_breathers.Constants;
+import dev.matthiesen.common.cobblemon_breathers.config.ModConfig;
 import dev.matthiesen.common.cobblemon_breathers.registry.ComponentTypesRegistry;
+import dev.matthiesen.common.cobblemon_breathers.util.Effects;
+import dev.matthiesen.common.cobblemon_breathers.util.PlayerUtils;
 import net.minecraft.ChatFormatting;
-import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -16,44 +18,28 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 
 public class ReBreatherItem extends Item implements Equipable {
-    private final boolean ambientEffects;
-    private final boolean visibleEffects;
+    private final ModConfig.ReBreatherItemConfig config;
     private final boolean effectIcons;
     private final int baseMaxAir;
     private final List<MobEffectInstance> effects;
 
-    public ReBreatherItem(Integer maxAir, UnaryOperator<EffectBuilder> effectBuilder) {
+    public ReBreatherItem(Integer maxAir, UnaryOperator<Effects.Builder> effectBuilder) {
         super(getItemProps(maxAir));
-        this.baseMaxAir = maxAir;
-        this.effects = effectBuilder.apply(new EffectBuilder()).build();
-        this.ambientEffects = CobblemonBreathers.config.reBreatherItemConfig.effectsConfig.showAmbient;
-        this.visibleEffects = CobblemonBreathers.config.reBreatherItemConfig.effectsConfig.visible;
+        this.config = CobblemonBreathers.config.reBreatherItemConfig;
         // Investigate why this seems to do nothing...
         this.effectIcons = false;
+        this.baseMaxAir = maxAir;
+        this.effects = effectBuilder.apply(Effects.builder()).build();
     }
 
     @SuppressWarnings("unchecked")
-    public static <T extends Item> Supplier<T> create(Integer maxAir, UnaryOperator<EffectBuilder> effectBuilder) {
+    public static <T extends Item> Supplier<T> create(Integer maxAir, UnaryOperator<Effects.Builder> effectBuilder) {
         return () -> (T) new ReBreatherItem(maxAir, effectBuilder);
-    }
-
-    public static class EffectBuilder {
-        private final List<MobEffectInstance> effects = new ArrayList<>();
-
-        public EffectBuilder addEffect(Holder<MobEffect> effect) {
-            effects.add(new MobEffectInstance(effect));
-            return this;
-        }
-
-        public List<MobEffectInstance> build() {
-            return effects;
-        }
     }
 
     private static Properties getItemProps(int maxAir) {
@@ -83,20 +69,11 @@ public class ReBreatherItem extends Item implements Equipable {
     @SuppressWarnings("unused")
     public void runPlayerActions(Player player) {}
 
-    public boolean checkAntiConditions(Player player) {
-        return player.isCreative() || player.isSpectator();
-    }
-
-    public boolean checkPlayerConditions(Player player) {
-        return !player.isUnderWater() || checkAntiConditions(player);
-    }
-
     @Override
     public void inventoryTick(ItemStack itemStack, Level level, Entity entity, int i, boolean bl) {
         if (!(entity instanceof Player player)) return;
         tickAirSupply(itemStack, player);
-        if (checkPlayerConditions(player)) return;
-        if (!checkItemEquipped(player)) return;
+        if (PlayerUtils.checkPlayerConditions(player) || !checkItemEquipped(player)) return;
         runPlayerActions(player);
         evaluateEffects(player);
     }
@@ -123,7 +100,7 @@ public class ReBreatherItem extends Item implements Equipable {
     public void evaluateEffects(Player player) {
         for (MobEffectInstance effect : effects) {
             if (!player.hasEffect(effect.getEffect())) {
-                player.addEffect(new MobEffectInstance(effect.getEffect(), 100, 0, ambientEffects, visibleEffects, effectIcons));
+                player.addEffect(new MobEffectInstance(effect.getEffect(), 100, 0, config.effectsConfig.showAmbient, config.effectsConfig.visible, effectIcons));
             }
         }
     }
@@ -152,13 +129,18 @@ public class ReBreatherItem extends Item implements Equipable {
         return MinValue;
     }
 
+    public void tickAccessory(Player player) {
+        runPlayerActions(player);
+        evaluateEffects(player);
+    }
+
     public void tickAirSupply(ItemStack item, Player player) {
         if (player.tickCount % 20 != 0) return;
         int currentAir = item.getOrDefault(ComponentTypesRegistry.AIR_RESERVE.get(), 0);
         int maxAir = item.getOrDefault(ComponentTypesRegistry.MAX_AIR.get(), 0);
-        if (checkPlayerConditions(player) || checkAntiConditions(player)) {
+        if (PlayerUtils.checkPlayerConditions(player) || PlayerUtils.checkAntiConditions(player)) {
             if (currentAir < maxAir) {
-                var toAddToCurrent = currentAir + CobblemonBreathers.config.reBreatherItemConfig.airSupplyRecovery;
+                var toAddToCurrent = currentAir + config.airSupplyRecovery;
                 if (toAddToCurrent > maxAir) toAddToCurrent = maxAir;
                 item.set(ComponentTypesRegistry.AIR_RESERVE.get(), ensureMinimumValue(toAddToCurrent));
             }
@@ -184,7 +166,7 @@ public class ReBreatherItem extends Item implements Equipable {
 
     @Override
     public int getBarColor(ItemStack itemStack) {
-        return 0x00BFFF;
+        return Constants.AIR_SUPPLY_BAR_COLOR;
     }
 
     @Override

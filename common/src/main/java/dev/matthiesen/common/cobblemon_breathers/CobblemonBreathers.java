@@ -6,7 +6,6 @@ import dev.matthiesen.common.cobblemon_breathers.config.ModConfig;
 import dev.matthiesen.common.cobblemon_breathers.registry.EnchantmentEffectsRegistry;
 import dev.matthiesen.common.cobblemon_breathers.platform.CobblemonBreathersPlatform;
 import dev.matthiesen.common.cobblemon_breathers.registry.ComponentTypesRegistry;
-import dev.matthiesen.common.cobblemon_breathers.registry.CriterionTriggerRegistry;
 import dev.matthiesen.common.cobblemon_breathers.registry.ItemRegistry;
 
 import java.util.ServiceLoader;
@@ -24,7 +23,6 @@ public class CobblemonBreathers {
         Constants.createInfoLog("Initializing Cobblemon Breathers");
         ComponentTypesRegistry.init();
         ItemRegistry.init();
-        CriterionTriggerRegistry.init();
         EnchantmentEffectsRegistry.init();
 
         if (COMMON_PLATFORM.isModLoaded("accessories")) {

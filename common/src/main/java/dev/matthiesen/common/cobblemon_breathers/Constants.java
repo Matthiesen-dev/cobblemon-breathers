@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 public class Constants {
     public static final String MOD_ID = "cobblemon_breathers";
     public static final String ModName = "Cobblemon Breathers";
+    public static final int AIR_SUPPLY_BAR_COLOR = 0x00BFFF;
 
     public static ResourceLocation modResource(String path) {
         return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);

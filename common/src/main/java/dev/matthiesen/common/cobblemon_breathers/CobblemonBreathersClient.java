@@ -23,6 +23,7 @@ public class CobblemonBreathersClient {
         }
     }
 
+    @SuppressWarnings("unused")
     public static void createAirSupplyHUDLayer(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
         Minecraft client = Minecraft.getInstance();
         if (client.player == null) return;

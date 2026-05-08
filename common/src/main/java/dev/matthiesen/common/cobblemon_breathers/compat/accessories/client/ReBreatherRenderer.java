@@ -13,7 +13,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 
@@ -21,21 +20,22 @@ public class ReBreatherRenderer implements SimpleAccessoryRenderer {
     @Override
     public <M extends LivingEntity> void align(ItemStack stack, SlotReference reference, EntityModel<M> model, PoseStack matrices) {
         if(!(model instanceof HumanoidModel<?> humanoidModel)) return;
-        transformToFace(matrices, humanoidModel.head, Side.FRONT);
+        transformToModelPart(matrices, humanoidModel.head);
     }
 
-    public static void transformToFace(PoseStack poseStack, ModelPart part, Side side) {
-        transformToModelPart(poseStack, part, side.direction.getNormal().getX(), side.direction.getNormal().getY(), side.direction.getNormal().getZ());
-    }
+    private static void transformToModelPart(PoseStack poseStack, ModelPart part) {
+        Side side = Side.FRONT;
+        int xPercent = side.direction.getNormal().getX();
+        int yPercent = side.direction.getNormal().getY();
+        int zPercent = side.direction.getNormal().getZ();
 
-    private static void transformToModelPart(PoseStack poseStack, ModelPart part, @Nullable Number xPercent, @Nullable Number yPercent, @Nullable Number zPercent) {
         part.translateAndRotate(poseStack);
         var aabb = getAABB(part);
         poseStack.scale(1 / 16f, 1 / 16f, 1 / 16f);
         poseStack.translate(
-                xPercent != null ? Mth.lerp((-xPercent.doubleValue() + 1) / 2, aabb.getFirst().x, aabb.getSecond().x) : 0,
-                yPercent != null ? Mth.lerp((-yPercent.doubleValue() + 1) / 2, aabb.getFirst().y, aabb.getSecond().y) + 2.8 : 0,
-                zPercent != null ? Mth.lerp((-zPercent.doubleValue() + 1) / 2, aabb.getFirst().z, aabb.getSecond().z) - 0.5 : 0
+                Mth.lerp((-(double) xPercent + 1) / 2, aabb.getFirst().x, aabb.getSecond().x),
+                Mth.lerp((-(double) yPercent + 1) / 2, aabb.getFirst().y, aabb.getSecond().y) + 2.8,
+                Mth.lerp((-(double) zPercent + 1) / 2, aabb.getFirst().z, aabb.getSecond().z) - 0.5
         );
         poseStack.scale(8, 8, 8);
     }
