@@ -138,6 +138,20 @@ public class ReBreatherItem extends Item implements Equipable {
         return swapWithEquipmentSlot(this, worldIn, playerIn, handIn);
     }
 
+    /**
+     * This is to ensure that the air supply value never goes below 0, as that would cause a game crash
+     *
+     * @param value the value to check
+     * @return the value if it's above 0, or 0 if it's below 0
+     */
+    private int ensureMinimumValue(Integer value) {
+        int MinValue = 0;
+        if (value > MinValue) {
+            MinValue = value;
+        }
+        return MinValue;
+    }
+
     public void tickAirSupply(ItemStack item, Player player) {
         if (player.tickCount % 20 != 0) return;
         int currentAir = item.getOrDefault(ComponentTypesRegistry.AIR_RESERVE, 0);
@@ -146,13 +160,13 @@ public class ReBreatherItem extends Item implements Equipable {
             if (currentAir < maxAir) {
                 var toAddToCurrent = currentAir + CobblemonBreathers.config.reBreatherItemConfig.airSupplyRecovery;
                 if (toAddToCurrent > maxAir) toAddToCurrent = maxAir;
-                item.set(ComponentTypesRegistry.AIR_RESERVE, toAddToCurrent);
+                item.set(ComponentTypesRegistry.AIR_RESERVE, ensureMinimumValue(toAddToCurrent));
             }
             return;
         }
         if (!checkItemEquipped(player)) return;
         if (currentAir > 0) {
-            item.set(ComponentTypesRegistry.AIR_RESERVE, currentAir - 1);
+            item.set(ComponentTypesRegistry.AIR_RESERVE, ensureMinimumValue(currentAir - 1));
         }
         boolean under10PercentAir = currentAir <= (maxAir * 0.1);
         if (under10PercentAir && currentAir > 0) {
