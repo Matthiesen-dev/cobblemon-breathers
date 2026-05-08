@@ -11,9 +11,9 @@ public class TranslationsRegistry {
         EN_TRANSLATIONS.put(newItemGroup("cobblemon_breathers"), "Cobblemon Breathers");
 
         // Air Supply Labels
-        EN_TRANSLATIONS.put(newAirSupply("current_air"), "Current air supply: %s/%s seconds");
-        EN_TRANSLATIONS.put(newAirSupply("supply_low"), "Air supply low! %s Seconds left!");
-        EN_TRANSLATIONS.put(newAirSupply("supply_depleted"), "Air supply depleted! You are suffocating!");
+        EN_TRANSLATIONS.put(newAirSupply("current_air"), "Current Air Supply: %s/%s seconds");
+        EN_TRANSLATIONS.put(newAirSupply("supply_low"), "Air Supply low! %s Seconds left!");
+        EN_TRANSLATIONS.put(newAirSupply("supply_depleted"), "Air Supply depleted! You are suffocating!");
 
         // Enchantment Labels
         EN_TRANSLATIONS.put(newEnchantment("breather_upgrade"), "Breather Upgrade");
