@@ -11,6 +11,14 @@ public class ModConfig {
     @SerializedName("breatherUpgradeEnchantConfig")
     public BreatherUpgradeEnchantConfig breatherUpgradeEnchantConfig = new BreatherUpgradeEnchantConfig();
 
+    @SerializedName("hudConfig")
+    public HudConfig hudConfig = new HudConfig();
+
+    public static class HudConfig {
+        @SerializedName("disableInGameOverlay")
+        public boolean disableInGameOverlay = false;
+    }
+
     public static class BreatherUpgradeEnchantConfig {
         @SerializedName("disableEnchantmentEffect")
         public boolean disableEnchantmentEffect = false;
