@@ -30,7 +30,7 @@ public record BreatherUpgradeEffect() implements EnchantmentEntityEffect {
     }
 
     public static void setMaxAir(EnchantedItemInUse context, int maxAir, int Addition) {
-        context.itemStack().set(ComponentTypesRegistry.MAX_AIR, maxAir + Addition);
+        context.itemStack().set(ComponentTypesRegistry.MAX_AIR.get(), maxAir + Addition);
     }
 
     @Override

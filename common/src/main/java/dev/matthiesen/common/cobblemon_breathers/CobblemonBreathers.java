@@ -11,29 +11,26 @@ import dev.matthiesen.common.cobblemon_breathers.registry.ItemRegistry;
 
 import java.util.ServiceLoader;
 
-@SuppressWarnings("CommentedOutCode")
 public class CobblemonBreathers {
     public static ModConfig config;
     public static final CobblemonBreathersPlatform COMMON_PLATFORM = ServiceLoader.load(CobblemonBreathersPlatform.class).findFirst().orElseThrow();
 
-    public static void initialize() {
-        Constants.createInfoLog("Initialized");
+    public static void loadConfig() {
         config = new ConfigManager().loadConfig();
+        Constants.createInfoLog("Initialized Config");
+    }
+
+    public static void initialize() {
+        Constants.createInfoLog("Initializing Cobblemon Breathers");
+        ComponentTypesRegistry.init();
+        ItemRegistry.init();
+        CriterionTriggerRegistry.init();
+        EnchantmentEffectsRegistry.init();
 
         if (COMMON_PLATFORM.isModLoaded("accessories")) {
             Constants.createInfoLog("Accessories mod detected, initializing compatibility");
             AccessoriesCompat.init();
         }
-
-        // Order is important... Don't move these (even if they are unused)
-        // SoundRegistry.init();
-        // StatsRegistry.init();
-        // BlockRegistry.init();
-        // BlockEntityRegistry.init();
-        ComponentTypesRegistry.init();
-        ItemRegistry.init();
-        CriterionTriggerRegistry.init();
-        EnchantmentEffectsRegistry.init();
     }
 
     public static void onStartup() {

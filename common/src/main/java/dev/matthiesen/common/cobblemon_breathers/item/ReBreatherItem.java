@@ -59,8 +59,8 @@ public class ReBreatherItem extends Item implements Equipable {
     private static Properties getItemProps(int maxAir) {
         return new Item.Properties()
                 .stacksTo(1)
-                .component(ComponentTypesRegistry.AIR_RESERVE, maxAir)
-                .component(ComponentTypesRegistry.MAX_AIR, maxAir);
+                .component(ComponentTypesRegistry.AIR_RESERVE.get(), maxAir)
+                .component(ComponentTypesRegistry.MAX_AIR.get(), maxAir);
     }
 
     public int getMaxAir() {
@@ -88,7 +88,7 @@ public class ReBreatherItem extends Item implements Equipable {
     }
 
     public boolean checkPlayerConditions(Player player) {
-        return !player.isInWater() || checkAntiConditions(player);
+        return !player.isUnderWater() || checkAntiConditions(player);
     }
 
     @Override
@@ -154,19 +154,19 @@ public class ReBreatherItem extends Item implements Equipable {
 
     public void tickAirSupply(ItemStack item, Player player) {
         if (player.tickCount % 20 != 0) return;
-        int currentAir = item.getOrDefault(ComponentTypesRegistry.AIR_RESERVE, 0);
-        int maxAir = item.getOrDefault(ComponentTypesRegistry.MAX_AIR, 0);
+        int currentAir = item.getOrDefault(ComponentTypesRegistry.AIR_RESERVE.get(), 0);
+        int maxAir = item.getOrDefault(ComponentTypesRegistry.MAX_AIR.get(), 0);
         if (checkPlayerConditions(player) || checkAntiConditions(player)) {
             if (currentAir < maxAir) {
                 var toAddToCurrent = currentAir + CobblemonBreathers.config.reBreatherItemConfig.airSupplyRecovery;
                 if (toAddToCurrent > maxAir) toAddToCurrent = maxAir;
-                item.set(ComponentTypesRegistry.AIR_RESERVE, ensureMinimumValue(toAddToCurrent));
+                item.set(ComponentTypesRegistry.AIR_RESERVE.get(), ensureMinimumValue(toAddToCurrent));
             }
             return;
         }
         if (!checkItemEquipped(player)) return;
         if (currentAir > 0) {
-            item.set(ComponentTypesRegistry.AIR_RESERVE, ensureMinimumValue(currentAir - 1));
+            item.set(ComponentTypesRegistry.AIR_RESERVE.get(), ensureMinimumValue(currentAir - 1));
         }
         boolean under100Air = currentAir <= 100;
         if (under100Air && currentAir > 0) {
@@ -189,15 +189,15 @@ public class ReBreatherItem extends Item implements Equipable {
 
     @Override
     public int getBarWidth(ItemStack itemStack) {
-        int currentAir = itemStack.getOrDefault(ComponentTypesRegistry.AIR_RESERVE, 0);
-        int maxAir = itemStack.getOrDefault(ComponentTypesRegistry.MAX_AIR, 0);
+        int currentAir = itemStack.getOrDefault(ComponentTypesRegistry.AIR_RESERVE.get(), 0);
+        int maxAir = itemStack.getOrDefault(ComponentTypesRegistry.MAX_AIR.get(), 0);
         return Math.round((float)currentAir * 13.0F / (float)maxAir);
     }
 
     @Override
     public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
-        int currentAir = itemStack.getOrDefault(ComponentTypesRegistry.AIR_RESERVE, 0);
-        int maxAir = itemStack.getOrDefault(ComponentTypesRegistry.MAX_AIR, 0);
+        int currentAir = itemStack.getOrDefault(ComponentTypesRegistry.AIR_RESERVE.get(), 0);
+        int maxAir = itemStack.getOrDefault(ComponentTypesRegistry.MAX_AIR.get(), 0);
         list.add(Component.translatable("airSupply.cobblemon_breathers.current_air", currentAir, maxAir).withStyle(ChatFormatting.BLUE));
     }
 }
