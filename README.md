@@ -103,6 +103,9 @@ The default configuration for the ReBreathers is as follows:
     "levelOneAirAddition": 200,
     "levelTwoAirAddition": 800,
     "levelThreeAirAddition": 2000
+  },
+  "hudConfig": {
+    "disableInGameOverlay": false
   }
 }
 ```
@@ -123,3 +126,5 @@ The default configuration for the ReBreathers is as follows:
   - **`levelOneAirAddition`:** The amount of air supply added by the ReBreather Upgrade I enchantment. (Default: 200 seconds)
   - **`levelTwoAirAddition`:** The amount of air supply added by the ReBreather Upgrade II enchantment. (Default: 800 seconds)
   - **`levelThreeAirAddition`:** The amount of air supply added by the ReBreather Upgrade III enchantment. (Default: 2000 seconds)
+- **`hudConfig`:** This section contains the configuration options for the in-game overlay that shows the remaining air supply while using a ReBreather.
+  - **`disableInGameOverlay`:** Whether to disable the in-game overlay. (Default: false)

@@ -25,6 +25,7 @@ public class CobblemonBreathersClient {
 
     @SuppressWarnings("unused")
     public static void createAirSupplyHUDLayer(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
+        if (CobblemonBreathers.config.hudConfig.disableInGameOverlay) return;
         Minecraft client = Minecraft.getInstance();
         if (client.player == null) return;
         if (!client.player.isUnderWater()) return;
