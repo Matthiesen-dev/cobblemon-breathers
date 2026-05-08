@@ -13,6 +13,6 @@ public record ReBreatherItemAccessory<T extends ReBreatherItem>(T item) implemen
         if (!(reference.entity() instanceof Player player)
                 || player.level().isClientSide()
                 || PlayerUtils.checkPlayerConditions(player)) return;
-        item.tickAccessory(player);
+        item.tickAccessory(stack, player);
     }
 }

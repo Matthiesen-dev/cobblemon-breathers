@@ -61,21 +61,16 @@ public class ReBreatherItem extends Item implements Equipable {
         return 1;
     }
 
-    /**
-     * Intended for overriding in case of items needing to run custom code on the player
-     * each tick, alongside applying effects.
-     * By default, does nothing.
-     */
-    @SuppressWarnings("unused")
-    public void runPlayerActions(Player player) {}
+    public void tickAccessory(ItemStack itemStack, Player player) {
+        evaluateEffects(itemStack, player);
+    }
 
     @Override
     public void inventoryTick(ItemStack itemStack, Level level, Entity entity, int i, boolean bl) {
         if (!(entity instanceof Player player)) return;
         tickAirSupply(itemStack, player);
         if (PlayerUtils.checkPlayerConditions(player) || !checkItemEquipped(player)) return;
-        runPlayerActions(player);
-        evaluateEffects(player);
+        evaluateEffects(itemStack, player);
     }
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
@@ -97,7 +92,9 @@ public class ReBreatherItem extends Item implements Equipable {
         return !itemFoundInInventory;
     }
 
-    public void evaluateEffects(Player player) {
+    public void evaluateEffects(ItemStack itemStack, Player player) {
+        int currentAir = itemStack.getOrDefault(ComponentTypesRegistry.AIR_RESERVE.get(), 0);
+        if (currentAir == 0) return;
         for (MobEffectInstance effect : effects) {
             if (!player.hasEffect(effect.getEffect())) {
                 player.addEffect(new MobEffectInstance(effect.getEffect(), 100, 0, config.effectsConfig.showAmbient, config.effectsConfig.visible, effectIcons));
@@ -127,11 +124,6 @@ public class ReBreatherItem extends Item implements Equipable {
             MinValue = value;
         }
         return MinValue;
-    }
-
-    public void tickAccessory(Player player) {
-        runPlayerActions(player);
-        evaluateEffects(player);
     }
 
     public void tickAirSupply(ItemStack item, Player player) {
