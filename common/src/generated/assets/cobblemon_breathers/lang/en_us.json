@@ -1,5 +1,6 @@
 {
   "airSupply.cobblemon_breathers.current_air": "Current Air Supply: %s/%s seconds",
+  "airSupply.cobblemon_breathers.hud_display": "%s seconds",
   "airSupply.cobblemon_breathers.supply_depleted": "Air Supply depleted! You are suffocating!",
   "airSupply.cobblemon_breathers.supply_low": "Air Supply low! %s Seconds left!",
   "enchantment.cobblemon_breathers.breather_upgrade": "Breather Upgrade",

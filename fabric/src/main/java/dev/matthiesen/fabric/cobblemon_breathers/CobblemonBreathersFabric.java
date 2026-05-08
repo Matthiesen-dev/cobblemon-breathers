@@ -12,6 +12,7 @@ public class CobblemonBreathersFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         Constants.createInfoLog("Loading for Fabric Mod Loader");
+        CobblemonBreathers.loadConfig();
         CobblemonBreathers.initialize();
 
         ServerLifecycleEvents.SERVER_STARTING.register(server -> {

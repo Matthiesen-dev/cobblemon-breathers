@@ -17,20 +17,22 @@ public record BreatherUpgradeEffect() implements EnchantmentEntityEffect {
 
     @Override
     public void apply(ServerLevel world, int enchantLevel, EnchantedItemInUse context, Entity entity, Vec3 pos) {
-        if (!(context.itemStack().getItem() instanceof ReBreatherItem item)) return;
-        if (CobblemonBreathers.config.breatherUpgradeEnchantConfig.disableEnchantmentEffect) return;
-        if (entity.getType() != EntityType.PLAYER) return;
+        var config = CobblemonBreathers.config.breatherUpgradeEnchantConfig;
+        if (!(context.itemStack().getItem() instanceof ReBreatherItem item)
+                || config.disableEnchantmentEffect
+                || entity.getType() != EntityType.PLAYER) return;
+
         int maxAir = item.getMaxAir();
         switch (enchantLevel) {
-            case 1 -> setMaxAir(context, maxAir, CobblemonBreathers.config.breatherUpgradeEnchantConfig.levelOneAirAddition);
-            case 2 -> setMaxAir(context, maxAir, CobblemonBreathers.config.breatherUpgradeEnchantConfig.levelTwoAirAddition);
-            case 3 -> setMaxAir(context, maxAir, CobblemonBreathers.config.breatherUpgradeEnchantConfig.levelThreeAirAddition);
+            case 1 -> setMaxAir(context, maxAir, config.levelOneAirAddition);
+            case 2 -> setMaxAir(context, maxAir, config.levelTwoAirAddition);
+            case 3 -> setMaxAir(context, maxAir, config.levelThreeAirAddition);
             default -> {}
         }
     }
 
     public static void setMaxAir(EnchantedItemInUse context, int maxAir, int Addition) {
-        context.itemStack().set(ComponentTypesRegistry.MAX_AIR, maxAir + Addition);
+        context.itemStack().set(ComponentTypesRegistry.MAX_AIR.get(), maxAir + Addition);
     }
 
     @Override

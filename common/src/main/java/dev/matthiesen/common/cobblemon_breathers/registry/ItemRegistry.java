@@ -3,6 +3,7 @@ package dev.matthiesen.common.cobblemon_breathers.registry;
 import dev.matthiesen.common.cobblemon_breathers.CobblemonBreathers;
 import dev.matthiesen.common.cobblemon_breathers.Constants;
 import dev.matthiesen.common.cobblemon_breathers.item.ReBreatherItem;
+import dev.matthiesen.common.cobblemon_breathers.util.Effects;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.CreativeModeTab;
@@ -47,7 +48,7 @@ public class ItemRegistry {
             REBREATHER_MK3
     );
 
-    private static <T extends Item> Supplier<T> registerReBreather(String id, Integer maxAir, UnaryOperator<ReBreatherItem.EffectBuilder> effectBuilder) {
+    private static <T extends Item> Supplier<T> registerReBreather(String id, Integer maxAir, UnaryOperator<Effects.Builder> effectBuilder) {
         return registerItem(id, ReBreatherItem.create(maxAir, effectBuilder));
     }
 

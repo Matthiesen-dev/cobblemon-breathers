@@ -14,12 +14,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.event.server.ServerStoppingEvent;
@@ -28,7 +26,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 @Mod(Constants.MOD_ID)
 public class CobblemonBreathersNeoForge {
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(Registries.SOUND_EVENT, Constants.MOD_ID);
-    public static final DeferredRegister<DataComponentType<?>> COMPONENT_TYPES = DeferredRegister.create(Registries.DATA_COMPONENT_TYPE, Constants.MOD_ID);
+    public static final DeferredRegister<DataComponentType<?>> COMPONENT_TYPES = DeferredRegister.createDataComponents(Registries.DATA_COMPONENT_TYPE, Constants.MOD_ID);
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(Registries.BLOCK, Constants.MOD_ID);
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, Constants.MOD_ID);
     public static final DeferredRegister<CreativeModeTab> CREATIVE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Constants.MOD_ID);
@@ -40,10 +38,7 @@ public class CobblemonBreathersNeoForge {
 
     public CobblemonBreathersNeoForge(IEventBus modBus) {
         Constants.createInfoLog("Loading for NeoForge Mod Loader");
-
-        if (FMLEnvironment.dist == Dist.CLIENT) {
-            new CobblemonBreathersNeoForgeClient(modBus);
-        }
+        CobblemonBreathers.loadConfig();
 
         STATS.register(modBus);
         SOUND_EVENTS.register(modBus);
