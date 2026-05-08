@@ -27,7 +27,7 @@ public class CobblemonBreathersNeoForgeClient {
         event.registerAbove(
                 VanillaGuiLayers.PLAYER_HEALTH,
                 ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "air_supply_display"),
-                CobblemonBreathersClient::createAirSupplyDisplayLayer
+                CobblemonBreathersClient::createAirSupplyHUDLayer
         );
     }
 }

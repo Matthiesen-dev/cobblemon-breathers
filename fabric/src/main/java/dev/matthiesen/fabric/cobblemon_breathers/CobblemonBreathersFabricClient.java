@@ -9,6 +9,6 @@ public class CobblemonBreathersFabricClient implements ClientModInitializer {
     public void onInitializeClient() {
         CobblemonBreathersClient.init();
         CobblemonBreathersClient.registerRenderers();
-        HudRenderCallback.EVENT.register(CobblemonBreathersClient::createAirSupplyDisplayLayer);
+        HudRenderCallback.EVENT.register(CobblemonBreathersClient::createAirSupplyHUDLayer);
     }
 }
