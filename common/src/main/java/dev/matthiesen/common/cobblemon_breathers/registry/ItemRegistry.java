@@ -30,21 +30,25 @@ public class ItemRegistry extends AbstractItemRegistry {
             "rebreather_mk3", "ReBreather Mk3"
     );
 
-    public static final Supplier<Item> REBREATHER_MK1 = registerReBreather("rebreather_mk1",
-            CobblemonBreathers.getConfig().reBreatherItemConfig.maxAirConfig.mk1,
-            builder -> builder.addEffect(MobEffects.WATER_BREATHING)
-    );
+    public static final Supplier<Item> REBREATHER_MK1;
+    public static final Supplier<Item> REBREATHER_MK2;
+    public static final Supplier<Item> REBREATHER_MK3;
 
-    public static final Supplier<Item> REBREATHER_MK2 = registerReBreather("rebreather_mk2",
-            CobblemonBreathers.getConfig().reBreatherItemConfig.maxAirConfig.mk2,
-            builder -> builder.addEffect(MobEffects.WATER_BREATHING)
-                    .addEffect(MobEffects.NIGHT_VISION)
-    );
-
-    public static final Supplier<Item> REBREATHER_MK3 = registerReBreather("rebreather_mk3",
-            CobblemonBreathers.getConfig().reBreatherItemConfig.maxAirConfig.mk3,
-            builder -> builder.addEffect(MobEffects.CONDUIT_POWER)
-    );
+    static {
+        REBREATHER_MK1 = registerReBreather("rebreather_mk1",
+                CobblemonBreathers.getConfig().reBreatherItemConfig.maxAirConfig.mk1,
+                builder -> builder.addEffect(MobEffects.WATER_BREATHING)
+        );
+        REBREATHER_MK2 = registerReBreather("rebreather_mk2",
+                CobblemonBreathers.getConfig().reBreatherItemConfig.maxAirConfig.mk2,
+                builder -> builder.addEffect(MobEffects.WATER_BREATHING)
+                        .addEffect(MobEffects.NIGHT_VISION)
+        );
+        REBREATHER_MK3 = registerReBreather("rebreather_mk3",
+                CobblemonBreathers.getConfig().reBreatherItemConfig.maxAirConfig.mk3,
+                builder -> builder.addEffect(MobEffects.CONDUIT_POWER)
+        );
+    }
 
     public static final List<Supplier<Item>> REBREATHERS = List.of(
             REBREATHER_MK1,
