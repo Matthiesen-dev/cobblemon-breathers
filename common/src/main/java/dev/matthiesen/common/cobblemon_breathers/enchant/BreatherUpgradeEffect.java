@@ -17,7 +17,7 @@ public record BreatherUpgradeEffect() implements EnchantmentEntityEffect {
 
     @Override
     public void apply(ServerLevel world, int enchantLevel, EnchantedItemInUse context, Entity entity, Vec3 pos) {
-        var config = CobblemonBreathers.config.breatherUpgradeEnchantConfig;
+        var config = CobblemonBreathers.getConfig().breatherUpgradeEnchantConfig;
         if (!(context.itemStack().getItem() instanceof ReBreatherItem item)
                 || config.disableEnchantmentEffect
                 || entity.getType() != EntityType.PLAYER) return;

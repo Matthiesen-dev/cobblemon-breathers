@@ -3,6 +3,9 @@ package dev.matthiesen.common.cobblemon_breathers;
 import dev.matthiesen.common.cobblemon_breathers.compat.accessories.client.AccessoriesCompatClient;
 import dev.matthiesen.common.cobblemon_breathers.datagen.ModTags;
 import dev.matthiesen.common.cobblemon_breathers.registry.ComponentTypesRegistry;
+import dev.matthiesen.common.matthiesen_lib.MatthiesenLib;
+import dev.matthiesen.common.matthiesen_lib.MatthiesenLibClient;
+import dev.matthiesen.common.matthiesen_lib.core.interfaces.NeoForgeVanillaGuiLayers;
 import io.wispforest.accessories.api.AccessoriesCapability;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
@@ -14,18 +17,22 @@ import net.minecraft.world.item.ItemStack;
 public class CobblemonBreathersClient {
     public static void init() {
         Constants.createInfoLog("Initializing client...");
+        MatthiesenLibClient.registerHudLayers(registrar -> registrar.registerAbove(
+                NeoForgeVanillaGuiLayers.PLAYER_HEALTH,
+                Constants.modResource("air_supply_display"),
+                CobblemonBreathersClient::createAirSupplyHUDLayer
+        ));
     }
 
     public static void registerRenderers() {
-        if (CobblemonBreathers.COMMON_PLATFORM.isModLoaded("accessories")) {
+        if (MatthiesenLib.isModLoaded("accessories")) {
             Constants.createInfoLog("Accessories mod detected, initializing client compatibility...");
             AccessoriesCompatClient.init();
         }
     }
 
-    @SuppressWarnings("unused")
     public static void createAirSupplyHUDLayer(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
-        if (CobblemonBreathers.config.hudConfig.disableInGameOverlay) return;
+        if (CobblemonBreathers.getConfig().hudConfig.disableInGameOverlay) return;
         Minecraft client = Minecraft.getInstance();
         if (client.player == null) return;
         if (!client.player.isUnderWater()) return;
@@ -47,7 +54,7 @@ public class CobblemonBreathersClient {
         }
 
         // Check if accessories mod is installed, and item is slotted in an accessory slot, if it is then get and set the item for display
-        if (CobblemonBreathers.COMMON_PLATFORM.isModLoaded("accessories")) {
+        if (MatthiesenLib.isModLoaded("accessories")) {
             var capability = AccessoriesCapability.get(client.player);
             if (capability != null) {
                 var bl = capability.isEquipped(stack -> !stack.isEmpty() && stack.is(ModTags.Items.BREATHERS));

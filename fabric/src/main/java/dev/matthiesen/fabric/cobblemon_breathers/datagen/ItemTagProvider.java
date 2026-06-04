@@ -16,11 +16,9 @@ public class ItemTagProvider extends FabricTagProvider<Item> {
 
     @Override
     protected void addTags(HolderLookup.Provider wrapperLookup) {
-        ModTags.TAG_ITEMS.forEach((tag, item) -> {
-            getOrCreateTagBuilder(tag).add(item);
-        });
-        ModTags.TAG_LISTS.forEach((parent, children) -> {
-            getOrCreateTagBuilder(parent).addTag(children);
-        });
+        ModTags.TAG_ITEMS.forEach((tag, item) ->
+                getOrCreateTagBuilder(tag).add(item));
+        ModTags.TAG_LISTS.forEach((parent, children) ->
+                getOrCreateTagBuilder(parent).addTag(children));
     }
 }

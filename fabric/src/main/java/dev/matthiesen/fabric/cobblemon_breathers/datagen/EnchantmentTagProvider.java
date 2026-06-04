@@ -16,8 +16,7 @@ public class EnchantmentTagProvider extends FabricTagProvider<Enchantment> {
 
     @Override
     protected void addTags(HolderLookup.Provider wrapperLookup) {
-        ModTags.ENCHANTMENTS.forEach((tag, enchantment) -> {
-            getOrCreateTagBuilder(tag).add(enchantment);
-        });
+        ModTags.ENCHANTMENTS.forEach((tag, enchantment) ->
+                getOrCreateTagBuilder(tag).add(enchantment));
     }
 }

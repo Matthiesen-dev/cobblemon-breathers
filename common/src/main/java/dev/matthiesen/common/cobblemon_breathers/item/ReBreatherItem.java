@@ -19,6 +19,7 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 
@@ -30,7 +31,7 @@ public class ReBreatherItem extends Item implements Equipable {
 
     public ReBreatherItem(Integer maxAir, UnaryOperator<Effects.Builder> effectBuilder) {
         super(getItemProps(maxAir));
-        this.config = CobblemonBreathers.config.reBreatherItemConfig;
+        this.config = CobblemonBreathers.getConfig().reBreatherItemConfig;
         // Investigate why this seems to do nothing...
         this.effectIcons = false;
         this.baseMaxAir = maxAir;
@@ -69,7 +70,10 @@ public class ReBreatherItem extends Item implements Equipable {
     public void inventoryTick(ItemStack itemStack, Level level, Entity entity, int i, boolean bl) {
         if (!(entity instanceof Player player)) return;
         tickAirSupply(itemStack, player);
-        if (PlayerUtils.checkPlayerConditions(player) || !checkItemEquipped(player)) return;
+        if (PlayerUtils.checkPlayerConditions(player) || !checkItemEquipped(player)) {
+            clearEffects(player);
+            return;
+        }
         evaluateEffects(itemStack, player);
     }
 
@@ -92,12 +96,32 @@ public class ReBreatherItem extends Item implements Equipable {
         return !itemFoundInInventory;
     }
 
+    public void clearEffects(Player player) {
+        for (MobEffectInstance effect : effects) {
+            if (
+                    player.hasEffect(effect.getEffect()) &&
+                    (Objects.requireNonNull(
+                            player.getEffect(effect.getEffect()))
+                            .getDuration() == MobEffectInstance.INFINITE_DURATION
+                    )
+            ) {
+                player.removeEffect(effect.getEffect());
+            }
+        }
+    }
+
     public void evaluateEffects(ItemStack itemStack, Player player) {
         int currentAir = itemStack.getOrDefault(ComponentTypesRegistry.AIR_RESERVE.get(), 0);
         if (currentAir == 0) return;
         for (MobEffectInstance effect : effects) {
             if (!player.hasEffect(effect.getEffect())) {
-                player.addEffect(new MobEffectInstance(effect.getEffect(), 100, 0, config.effectsConfig.showAmbient, config.effectsConfig.visible, effectIcons));
+                player.addEffect(new MobEffectInstance(
+                        effect.getEffect(),
+                        MobEffectInstance.INFINITE_DURATION,
+                        0,
+                        config.effectsConfig.showAmbient,
+                        config.effectsConfig.visible, effectIcons
+                ));
             }
         }
     }

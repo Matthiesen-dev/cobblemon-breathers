@@ -11,8 +11,11 @@ public record ReBreatherItemAccessory<T extends ReBreatherItem>(T item) implemen
     @Override
     public void tick(ItemStack stack, SlotReference reference) {
         if (!(reference.entity() instanceof Player player)
-                || player.level().isClientSide()
-                || PlayerUtils.checkPlayerConditions(player)) return;
+                || player.level().isClientSide()) return;
+        if (PlayerUtils.checkPlayerConditions(player)) {
+            item.clearEffects(player);
+            return;
+        }
         item.tickAccessory(stack, player);
     }
 }
