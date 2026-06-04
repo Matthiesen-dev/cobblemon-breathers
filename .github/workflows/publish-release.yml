@@ -23,7 +23,7 @@ env:
       {"project_id":"cPmFkPpB","dependency_type":"required"},
       {"project_id":"jtmvUHXj","dependency_type":"optional"}
     ]
-  DISCORD_ICON_URL: "https://raw.githubusercontent.com/Matthiesen-dev/.github/refs/heads/main/logo-transparent.png"
+  DISCORD_ICON_URL: "https://raw.githubusercontent.com/Matthiesen-dev/.github/refs/heads/main/mod-logos/cobblemon-breathers.png"
 
 # The dependencies above correspond to:
 # - Cobblemon (MdwFAVRL)
