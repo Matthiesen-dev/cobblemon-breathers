@@ -63,6 +63,7 @@ public class ModConfig {
         public boolean visible = false;
     }
 
+    @SuppressWarnings("unused")
     public static final Gson GSON = new GsonBuilder()
             .disableHtmlEscaping()
             .setPrettyPrinting()

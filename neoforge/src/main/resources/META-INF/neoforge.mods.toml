@@ -1,17 +1,17 @@
 modLoader = "javafml"
 loaderVersion = "[1,)"
-#issueTrackerURL = "A valid URL to your issue tracker where people can open bug tickets"
+issueTrackerURL = "${github_url}/issues"
 license = "MIT License"
 
 [[mods]]
 modId = "${mod_id}"
 version = "${version}"
-displayName = "Cobblemon Breathers"
-authors = "Adam Matthiesen"
+displayName = "${mod_name}"
+authors = "${mod_author}"
 description = '''
-
+${mod_description}
 '''
-#logoFile = ""
+logoFile = "icon.png"
 
 [[dependencies.${mod_id}]]
 modId = "minecraft"
@@ -35,8 +35,22 @@ ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.${mod_id}]]
+modId = "matthiesen_lib"
+mandatory = true
+versionRange = "[1.5.1, )"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "matthiesen_lib_api"
+mandatory = true
+versionRange = "[1.5.1, )"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
 modId = "accessories"
-type = "required"
+mandatory = false
 versionRange = "[1.1.0-beta.52+1.21.1, )"
 ordering = "AFTER"
 side = "BOTH"

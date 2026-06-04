@@ -16,7 +16,7 @@ public class Effects {
         private final List<MobEffectInstance> effects = new ArrayList<>();
 
         public Builder addEffect(Holder<MobEffect> effect) {
-            effects.add(new MobEffectInstance(effect));
+            effects.add(new MobEffectInstance(effect, MobEffectInstance.INFINITE_DURATION));
             return this;
         }
 

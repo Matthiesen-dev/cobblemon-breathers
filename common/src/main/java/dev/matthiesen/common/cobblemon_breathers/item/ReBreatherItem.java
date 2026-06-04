@@ -3,9 +3,12 @@ package dev.matthiesen.common.cobblemon_breathers.item;
 import dev.matthiesen.common.cobblemon_breathers.CobblemonBreathers;
 import dev.matthiesen.common.cobblemon_breathers.Constants;
 import dev.matthiesen.common.cobblemon_breathers.config.ModConfig;
+import dev.matthiesen.common.cobblemon_breathers.datagen.ModTags;
 import dev.matthiesen.common.cobblemon_breathers.registry.ComponentTypesRegistry;
 import dev.matthiesen.common.cobblemon_breathers.util.Effects;
 import dev.matthiesen.common.cobblemon_breathers.util.PlayerUtils;
+import dev.matthiesen.common.matthiesen_lib.MatthiesenLib;
+import io.wispforest.accessories.api.AccessoriesCapability;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
@@ -19,6 +22,7 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 
@@ -30,7 +34,7 @@ public class ReBreatherItem extends Item implements Equipable {
 
     public ReBreatherItem(Integer maxAir, UnaryOperator<Effects.Builder> effectBuilder) {
         super(getItemProps(maxAir));
-        this.config = CobblemonBreathers.config.reBreatherItemConfig;
+        this.config = CobblemonBreathers.getConfig().reBreatherItemConfig;
         // Investigate why this seems to do nothing...
         this.effectIcons = false;
         this.baseMaxAir = maxAir;
@@ -69,27 +73,47 @@ public class ReBreatherItem extends Item implements Equipable {
     public void inventoryTick(ItemStack itemStack, Level level, Entity entity, int i, boolean bl) {
         if (!(entity instanceof Player player)) return;
         tickAirSupply(itemStack, player);
-        if (PlayerUtils.checkPlayerConditions(player) || !checkItemEquipped(player)) return;
+        if (PlayerUtils.checkPlayerConditions(player) || !isItemEquipped(player)) {
+            clearEffects(player);
+            return;
+        }
         evaluateEffects(itemStack, player);
     }
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
-    private boolean checkItemEquipped(Player player) {
+    public boolean isItemEquipped(Player player) {
         var inventory = player.getInventory();
         ItemStack helmetSlot = inventory.getArmor(3);
-        var listOfItems = inventory.items.stream().toList();
-        if (helmetSlot.isEmpty() && listOfItems.isEmpty()) return false;
-        if (!helmetSlot.isEmpty() && helmetSlot.getItem().equals(this)) return true;
+        boolean isInHelmetSlot = !helmetSlot.isEmpty() && helmetSlot.getItem().equals(this);
+        boolean isInAccessorySlot = false;
 
-        boolean itemFoundInInventory = false;
-
-        for (ItemStack stack : listOfItems) {
-            if (stack.getItem().equals(this)) {
-                itemFoundInInventory = true;
-                break;
+        if (MatthiesenLib.isModLoaded("accessories")) {
+            var capability = AccessoriesCapability.get(player);
+            if (capability != null) {
+                var bl = capability.isEquipped(stack -> !stack.isEmpty() && stack.is(ModTags.Items.BREATHERS));
+                if (bl) {
+                    var test = capability.getEquipped(stack -> !stack.isEmpty() && stack.is(ModTags.Items.BREATHERS)).getFirst();
+                    isInAccessorySlot = test.stack().getItem().equals(this);
+                }
             }
         }
-        return !itemFoundInInventory;
+
+        if (isInHelmetSlot) return true;
+        return isInAccessorySlot;
+    }
+
+    public void clearEffects(Player player) {
+        for (MobEffectInstance effect : effects) {
+            if (
+                    player.hasEffect(effect.getEffect()) &&
+                    (Objects.requireNonNull(
+                            player.getEffect(effect.getEffect()))
+                            .getDuration() == MobEffectInstance.INFINITE_DURATION
+                    )
+            ) {
+                player.removeEffect(effect.getEffect());
+            }
+        }
     }
 
     public void evaluateEffects(ItemStack itemStack, Player player) {
@@ -97,7 +121,13 @@ public class ReBreatherItem extends Item implements Equipable {
         if (currentAir == 0) return;
         for (MobEffectInstance effect : effects) {
             if (!player.hasEffect(effect.getEffect())) {
-                player.addEffect(new MobEffectInstance(effect.getEffect(), 100, 0, config.effectsConfig.showAmbient, config.effectsConfig.visible, effectIcons));
+                player.addEffect(new MobEffectInstance(
+                        effect.getEffect(),
+                        MobEffectInstance.INFINITE_DURATION,
+                        0,
+                        config.effectsConfig.showAmbient,
+                        config.effectsConfig.visible, effectIcons
+                ));
             }
         }
     }
@@ -138,7 +168,7 @@ public class ReBreatherItem extends Item implements Equipable {
             }
             return;
         }
-        if (!checkItemEquipped(player)) return;
+        if (!isItemEquipped(player)) return;
         if (currentAir > 0) {
             item.set(ComponentTypesRegistry.AIR_RESERVE.get(), ensureMinimumValue(currentAir - 1));
         }
