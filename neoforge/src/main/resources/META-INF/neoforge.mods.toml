@@ -35,22 +35,22 @@ ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.${mod_id}]]
-modId = "accessories"
-type = "required"
-versionRange = "[1.1.0-beta.52+1.21.1, )"
-ordering = "AFTER"
-side = "BOTH"
-
-[[dependencies.${mod_id}]]
 modId = "matthiesen_lib"
-type = "required"
+mandatory = true
 versionRange = "[1.5.1, )"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.${mod_id}]]
 modId = "matthiesen_lib_api"
-type = "required"
+mandatory = true
 versionRange = "[1.5.1, )"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "accessories"
+mandatory = false
+versionRange = "[1.1.0-beta.52+1.21.1, )"
 ordering = "AFTER"
 side = "BOTH"
