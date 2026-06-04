@@ -2,12 +2,12 @@
   "schemaVersion": 1,
   "id": "${mod_id}",
   "version": "${version}",
-  "name": "Cobblemon Breathers",
-  "description": "",
+  "name": "${mod_name}",
+  "description": "${mod_description}",
   "authors": [
-    "Adam Matthiesen"
+    "${mod_author}"
   ],
-  "license": "MIT License",
+  "license": "${mod_license}",
   "icon": "assets/example/icon.png",
   "environment": "*",
   "entrypoints": {
@@ -24,6 +24,8 @@
   "depends": {
     "minecraft": "1.21.1",
     "cobblemon": ">=1.7.3 <1.8.0",
-    "accessories": ">=1.1.0-beta.52+1.21.1"
+    "accessories": ">=1.1.0-beta.52+1.21.1",
+    "matthiesen_lib": ">=1.5.1 <2.0.0",
+    "matthiesen_lib_api": ">=1.5.1 <2.0.0"
   }
 }
