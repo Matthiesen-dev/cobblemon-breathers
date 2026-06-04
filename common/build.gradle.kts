@@ -1,6 +1,7 @@
 plugins {
     id("dev.architectury.loom")
     id("architectury-plugin")
+    id("matthiesen.minecraft-module-conventions")
 }
 
 architectury {
@@ -15,34 +16,21 @@ sourceSets {
     }
 }
 
-loom {
-    silentMojangMappingsLicense()
-}
-
 dependencies {
-    minecraft("com.mojang:minecraft:${property("minecraft_version")}")
+    minecraft(libs.minecraft)
     mappings(loom.officialMojangMappings())
-    modImplementation("com.cobblemon:mod:${property("cobblemon_version")}") { isTransitive = false }
-    modCompileOnly("io.wispforest:accessories-common:${property("accessories_version")}")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:${property("junit_version")}")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${property("junit_version")}")
+    modImplementation(libs.bundles.commonModImplementationNoTransitive) { isTransitive = false }
+    modCompileOnly(libs.bundles.commonModCompileOnly)
+
+    testImplementation(libs.bundles.testImplementation)
+    testRuntimeOnly(libs.bundles.testRuntimeOnly)
 }
 
 tasks {
-    test {
-        useJUnitPlatform()
-    }
-
     processResources {
         duplicatesStrategy = DuplicatesStrategy.INCLUDE
         filesMatching("pack.mcmeta") {
             expand(project.properties)
         }
-    }
-
-    remapSourcesJar {
-        archiveBaseName.set("${rootProject.property("archives_base_name")}-${project.name}")
-        archiveVersion.set("${project.version}")
-        archiveClassifier.set("sources")
     }
 }
