@@ -27,6 +27,8 @@ public class CobblemonBreathers {
 
     public static void initialize() {
         Constants.createInfoLog("Initializing Cobblemon Breathers");
+        MetricManager.init();
+
         ComponentTypesRegistry.init();
         ItemRegistry.init();
         CreativeModTabsRegistry.init();
@@ -36,8 +38,6 @@ public class CobblemonBreathers {
             Constants.createInfoLog("Accessories mod detected, initializing compatibility");
             AccessoriesCompat.init();
         }
-
-        MetricManager.getMetricContext().ready();
     }
 
     public static ModConfig getConfig() {
