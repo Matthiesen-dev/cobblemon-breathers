@@ -1,7 +1,7 @@
 package dev.matthiesen.cobblemon_breathers.common.registry;
 
 import dev.matthiesen.cobblemon_breathers.common.CobblemonBreathers;
-import dev.matthiesen.common.matthiesen_lib.registry.AbstractCreativeModeTabRegistry;
+import dev.matthiesen.matthiesen_core.common.registry.AbstractCreativeModeTabRegistry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
