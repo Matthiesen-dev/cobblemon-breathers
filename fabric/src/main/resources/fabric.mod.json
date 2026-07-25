@@ -24,7 +24,7 @@
   "depends": {
     "minecraft": "1.21.1",
     "cobblemon": ">=1.7.3 <1.8.0",
-    "matthiesen_core": "*"
+    "matthiesen_core": ">=1.0.0-beta.2 <2.0.0"
   },
   "suggests": {
     "accessories": ">=1.1.0-beta.52+1.21.1"
