@@ -5,7 +5,7 @@ import dev.matthiesen.matthiesen_core.common.registry.AbstractCreativeModeTabReg
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-//import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.CreativeModeTabs;
 
 import java.util.function.Supplier;
 
@@ -19,12 +19,7 @@ public final class CreativeModeTabsRegistry extends AbstractCreativeModeTabRegis
     public static void init() {
         CobblemonBreathers.INSTANCE.createInfoLog("Registering creative mode tabs...");
 
-        // TODO need to fix this upstream
-//        INSTANCE.registerTabAugmentations(registrar -> {
-//            for (var entry : ItemRegistry.REBREATHERS) {
-//                registrar.register(CreativeModeTabs.TOOLS_AND_UTILITIES, new ItemStack(entry.get()));
-//            }
-//        });
+        INSTANCE.registerTabItemAugmentations(CreativeModeTabs.TOOLS_AND_UTILITIES, ItemRegistry.REBREATHERS);
     }
 
     public static final Supplier<CreativeModeTab> MAIN_TAB;
