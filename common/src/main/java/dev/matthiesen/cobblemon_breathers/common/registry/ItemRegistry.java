@@ -3,7 +3,7 @@ package dev.matthiesen.cobblemon_breathers.common.registry;
 import dev.matthiesen.cobblemon_breathers.common.CobblemonBreathers;
 import dev.matthiesen.cobblemon_breathers.common.item.ReBreatherItem;
 import dev.matthiesen.cobblemon_breathers.common.util.Effects;
-import dev.matthiesen.common.matthiesen_lib.registry.AbstractItemRegistry;
+import dev.matthiesen.matthiesen_core.common.registry.AbstractItemRegistry;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Item;
 

@@ -3,7 +3,7 @@ package dev.matthiesen.cobblemon_breathers.common.registry;
 import com.mojang.serialization.MapCodec;
 import dev.matthiesen.cobblemon_breathers.common.CobblemonBreathers;
 import dev.matthiesen.cobblemon_breathers.common.enchant.BreatherUpgradeEffect;
-import dev.matthiesen.common.matthiesen_lib.registry.AbstractEntityEffectRegistry;
+import dev.matthiesen.matthiesen_core.common.registry.AbstractEntityEffectRegistry;
 import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
 
 import java.util.function.Supplier;

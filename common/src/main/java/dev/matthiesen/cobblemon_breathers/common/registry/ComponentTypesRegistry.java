@@ -1,7 +1,7 @@
 package dev.matthiesen.cobblemon_breathers.common.registry;
 
 import dev.matthiesen.cobblemon_breathers.common.CobblemonBreathers;
-import dev.matthiesen.common.matthiesen_lib.registry.AbstractDataComponentTypeRegistry;
+import dev.matthiesen.matthiesen_core.common.registry.AbstractDataComponentTypeRegistry;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.util.ExtraCodecs;
 

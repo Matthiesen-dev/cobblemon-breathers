@@ -6,7 +6,6 @@ import dev.matthiesen.cobblemon_breathers.common.datagen.ModTags;
 import dev.matthiesen.cobblemon_breathers.common.registry.ComponentTypesRegistry;
 import dev.matthiesen.cobblemon_breathers.common.util.Effects;
 import dev.matthiesen.cobblemon_breathers.common.util.PlayerUtils;
-import dev.matthiesen.common.matthiesen_lib.MatthiesenLib;
 import io.wispforest.accessories.api.AccessoriesCapability;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -86,7 +85,7 @@ public class ReBreatherItem extends Item implements Equipable {
         boolean isInHelmetSlot = !helmetSlot.isEmpty() && helmetSlot.getItem().equals(this);
         boolean isInAccessorySlot = false;
 
-        if (MatthiesenLib.isModLoaded("accessories")) {
+        if (CobblemonBreathers.INSTANCE.getCommonUtils().isModLoaded("accessories")) {
             var capability = AccessoriesCapability.get(player);
             if (capability != null) {
                 var bl = capability.isEquipped(stack -> !stack.isEmpty() && stack.is(ModTags.Items.BREATHERS));
