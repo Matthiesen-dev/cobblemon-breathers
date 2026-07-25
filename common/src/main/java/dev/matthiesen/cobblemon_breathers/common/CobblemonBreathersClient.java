@@ -1,12 +1,14 @@
 package dev.matthiesen.cobblemon_breathers.common;
 
 import dev.matthiesen.cobblemon_breathers.common.compat.accessories.client.AccessoriesCompatClient;
+import dev.matthiesen.cobblemon_breathers.common.config.BreathersClientConfig;
 import dev.matthiesen.cobblemon_breathers.common.datagen.ModTags;
 import dev.matthiesen.cobblemon_breathers.common.registry.ComponentTypesRegistry;
 import dev.matthiesen.matthiesen_core.common.AbstractCommonClientMod;
 import dev.matthiesen.matthiesen_core.common.api.client.hud.HudOrdering;
 import dev.matthiesen.matthiesen_core.common.api.client.hud.NeoForgeVanillaGuiLayers;
 import dev.matthiesen.matthiesen_core.common.api.events.PlatformClientEvents;
+import dev.matthiesen.matthiesen_core.common.utility.config.ConfigManager;
 import io.wispforest.accessories.api.AccessoriesCapability;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
@@ -18,12 +20,17 @@ import net.minecraft.world.item.ItemStack;
 public final class CobblemonBreathersClient extends AbstractCommonClientMod {
     public static final CobblemonBreathersClient INSTANCE = new CobblemonBreathersClient();
 
+    public static final ConfigManager<BreathersClientConfig> CLIENT_CONFIG_MANAGER =
+            new ConfigManager<>(BreathersClientConfig.class, "client", CobblemonBreathers.MOD_ID);
+
     private CobblemonBreathersClient() {
         super(CobblemonBreathers.INSTANCE);
     }
 
     @Override
     public void initialize() {
+        CLIENT_CONFIG_MANAGER.loadConfig();
+
         PlatformClientEvents.registerHudLayer(
                 HudOrdering.AFTER,
                 NeoForgeVanillaGuiLayers.PLAYER_HEALTH,
@@ -34,6 +41,10 @@ public final class CobblemonBreathersClient extends AbstractCommonClientMod {
         createInfoLog("Initialized Cobblemon Breathers Client");
     }
 
+    public BreathersClientConfig getClientConfig() {
+        return CLIENT_CONFIG_MANAGER.getConfig();
+    }
+
     public void registerRenderers() {
         if (CobblemonBreathers.INSTANCE.getCommonUtils().isModLoaded("accessories")) {
             createInfoLog("Accessories mod detected, initializing client compatibility...");
@@ -42,7 +53,7 @@ public final class CobblemonBreathersClient extends AbstractCommonClientMod {
     }
 
     public static void createAirSupplyHudLayer(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
-        if (CobblemonBreathers.INSTANCE.getConfig().hudConfig.disableInGameOverlay) return;
+        if (INSTANCE.getClientConfig().hudConfig.disableInGameOverlay) return;
         Minecraft client = Minecraft.getInstance();
         if (client.player == null) return;
         if (!client.player.isUnderWater()) return;

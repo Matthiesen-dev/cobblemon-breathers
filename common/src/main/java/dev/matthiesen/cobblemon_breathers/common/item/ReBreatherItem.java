@@ -1,7 +1,7 @@
 package dev.matthiesen.cobblemon_breathers.common.item;
 
 import dev.matthiesen.cobblemon_breathers.common.CobblemonBreathers;
-import dev.matthiesen.cobblemon_breathers.common.config.BreathersConfig;
+import dev.matthiesen.cobblemon_breathers.common.config.BreathersServerConfig;
 import dev.matthiesen.cobblemon_breathers.common.datagen.ModTags;
 import dev.matthiesen.cobblemon_breathers.common.registry.ComponentTypesRegistry;
 import dev.matthiesen.cobblemon_breathers.common.util.Effects;
@@ -25,14 +25,14 @@ import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 
 public class ReBreatherItem extends Item implements Equipable {
-    private final BreathersConfig.ReBreatherItemConfig config;
+    private final BreathersServerConfig config;
     private final boolean effectIcons;
     private final int baseMaxAir;
     private final List<MobEffectInstance> effects;
 
     public ReBreatherItem(Integer maxAir, UnaryOperator<Effects.Builder> effectBuilder) {
         super(getItemProps(maxAir));
-        this.config = CobblemonBreathers.INSTANCE.getConfig().reBreatherItemConfig;
+        this.config = CobblemonBreathers.INSTANCE.getServerConfig();
         // Investigate why this seems to do nothing...
         this.effectIcons = false;
         this.baseMaxAir = maxAir;
@@ -123,8 +123,8 @@ public class ReBreatherItem extends Item implements Equipable {
                         effect.getEffect(),
                         MobEffectInstance.INFINITE_DURATION,
                         0,
-                        config.effectsConfig.showAmbient,
-                        config.effectsConfig.visible, effectIcons
+                        config.effectControlConfig.showAmbient,
+                        config.effectControlConfig.visible, effectIcons
                 ));
             }
         }

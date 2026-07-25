@@ -35,16 +35,16 @@ public final class ItemRegistry extends AbstractItemRegistry {
 
     static {
         REBREATHER_MK1 = registerReBreather("rebreather_mk1",
-                CobblemonBreathers.INSTANCE.getConfig().reBreatherItemConfig.maxAirConfig.mk1,
+                CobblemonBreathers.INSTANCE.getServerConfig().maxAirConfig.mk1,
                 builder -> builder.addEffect(MobEffects.WATER_BREATHING)
         );
         REBREATHER_MK2 = registerReBreather("rebreather_mk2",
-                CobblemonBreathers.INSTANCE.getConfig().reBreatherItemConfig.maxAirConfig.mk2,
+                CobblemonBreathers.INSTANCE.getServerConfig().maxAirConfig.mk2,
                 builder -> builder.addEffect(MobEffects.WATER_BREATHING)
                         .addEffect(MobEffects.NIGHT_VISION)
         );
         REBREATHER_MK3 = registerReBreather("rebreather_mk3",
-                CobblemonBreathers.INSTANCE.getConfig().reBreatherItemConfig.maxAirConfig.mk3,
+                CobblemonBreathers.INSTANCE.getServerConfig().maxAirConfig.mk3,
                 builder -> builder.addEffect(MobEffects.CONDUIT_POWER)
         );
     }
