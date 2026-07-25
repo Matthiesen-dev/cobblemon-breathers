@@ -5,19 +5,22 @@ import dev.matthiesen.cobblemon_breathers.common.CobblemonBreathersClient;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 
-@EventBusSubscriber(modid = CobblemonBreathers.MOD_ID, value = Dist.CLIENT)
+@Mod(value = CobblemonBreathers.MOD_ID, dist = Dist.CLIENT)
 public final class CobblemonBreathersNeoForgeClient {
-    private static volatile CobblemonBreathersClient instance;
+    private static final CobblemonBreathersClient instance = CobblemonBreathersClient.INSTANCE;
 
     public CobblemonBreathersNeoForgeClient() {
-        instance = CobblemonBreathersClient.INSTANCE;
         instance.initialize();
     }
 
-    @SubscribeEvent
-    public static void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
-        instance.registerRenderers();
+    @EventBusSubscriber(value = Dist.CLIENT, modid = CobblemonBreathers.MOD_ID)
+    public static class ClientEventBus {
+        @SubscribeEvent
+        public static void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
+            instance.registerRenderers();
+        }
     }
 }

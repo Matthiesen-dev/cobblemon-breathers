@@ -44,6 +44,7 @@ side = "BOTH"
 [[dependencies.${mod_id}]]
 modId = "accessories"
 mandatory = false
+type = "optional"
 versionRange = "[1.1.0-beta.52+1.21.1, )"
 ordering = "AFTER"
 side = "BOTH"
