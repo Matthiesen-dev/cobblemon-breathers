@@ -13,7 +13,7 @@ cobblemon = "1.7.3+1.21.1"
 junit = "5.1.0"
 publish = "0.35.0"
 matthiesen_lib = "1.5.2"
-sponge-mixin = "0.8.5"
+matthiesen_core = "1.0.0-beta.1"
 accessories = "1.1.0-beta.52+1.21.1"
 jankson = "1.2.2"
 endec = "0.1.5.1"
@@ -49,7 +49,11 @@ matthiesen-lib-neoforge = { group = "dev.matthiesen", name = "matthiesen-lib-neo
 matthiesen-lib-api-common = { group = "dev.matthiesen", name = "matthiesen-lib-api-common", version.ref = "matthiesen_lib" }
 matthiesen-lib-api-fabric = { group = "dev.matthiesen", name = "matthiesen-lib-api-fabric", version.ref = "matthiesen_lib" }
 matthiesen-lib-api-neoforge = { group = "dev.matthiesen", name = "matthiesen-lib-api-neoforge", version.ref = "matthiesen_lib" }
-sponge-mixin = { group = "org.spongepowered", name = "mixin", version.ref = "sponge-mixin" }
+
+matthiesen-core-common = { group = "dev.matthiesen", name = "matthiesen-core-common", version.ref = "matthiesen_core" }
+matthiesen-core-fabric = { group = "dev.matthiesen", name = "matthiesen-core-fabric", version.ref = "matthiesen_core" }
+matthiesen-core-neoforge = { group = "dev.matthiesen", name = "matthiesen-core-neoforge", version.ref = "matthiesen_core" }
+
 accessories-common = { group = "io.wispforest", name = "accessories-common", version.ref = "accessories" }
 accessories-fabric = { group = "io.wispforest", name = "accessories-fabric", version.ref = "accessories" }
 forge-jankson = { group = "blue.endless", name = "jankson", version.ref = "jankson" }
@@ -63,11 +67,11 @@ testImplementation = ["junit-api"]
 testRuntimeOnly = ["junit-engine"]
 
 commonModCompileOnly = ["accessories-common"]
-commonModImplementationNoTransitive = ["cobblemon-common", "matthiesen-lib-api-common", "matthiesen-lib-common"]
+commonModImplementationNoTransitive = ["cobblemon-common", "matthiesen-lib-api-common", "matthiesen-lib-common", "matthiesen-core-common"]
 
 fabricModImplementation = ["fabric-loader", "fabric-api", "fabric-language-kotlin", "accessories-fabric"]
-fabricModImplementationNoTransitive = ["cobblemon-fabric", "matthiesen-lib-api-fabric", "matthiesen-lib-fabric"]
+fabricModImplementationNoTransitive = ["cobblemon-fabric", "matthiesen-lib-api-fabric", "matthiesen-lib-fabric", "matthiesen-core-fabric"]
 
 neoforgeModImplementation = []
-neoforgeModImplementationNoTransitive = ["cobblemon-neoforge", "matthiesen-lib-api-neoforge", "matthiesen-lib-neoforge"]
+neoforgeModImplementationNoTransitive = ["cobblemon-neoforge", "matthiesen-lib-api-neoforge", "matthiesen-lib-neoforge", "matthiesen-core-neoforge"]
 neoforgeRuntimeLibrary = ["forge-jankson", "forge-endec", "forge-endec-gson", "forge-endec-jankson", "forge-netty"]
