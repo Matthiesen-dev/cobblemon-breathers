@@ -3,7 +3,7 @@ package dev.matthiesen.cobblemon_breathers.common.datagen;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TranslationsRegistry {
+public final class TranslationsRegistry {
     public static final Map<String, String> EN_TRANSLATIONS = new HashMap<>();
 
     static {

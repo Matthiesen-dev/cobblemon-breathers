@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public class ModTags {
+public final class ModTags {
     public static class Items {
         public static final TagKey<Item> BREATHERS = createTag("breathers");
 

@@ -19,7 +19,7 @@ import java.util.Map;
 import static net.minecraft.data.recipes.RecipeProvider.has;
 
 @SuppressWarnings("unused")
-public class RecipeRegistry {
+public final class RecipeRegistry {
     public static List<RecipeBuilder> RECIPES = new ArrayList<>();
     public static Map<String, SmithingTransformRecipeBuilder> SMITHING_RECIPES = new HashMap<>();
 

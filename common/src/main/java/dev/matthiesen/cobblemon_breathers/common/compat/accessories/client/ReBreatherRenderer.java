@@ -16,7 +16,7 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.ArrayList;
 
-public class ReBreatherRenderer implements SimpleAccessoryRenderer {
+public final class ReBreatherRenderer implements SimpleAccessoryRenderer {
     @Override
     public <M extends LivingEntity> void align(ItemStack stack, SlotReference reference, EntityModel<M> model, PoseStack matrices) {
         if(!(model instanceof HumanoidModel<?> humanoidModel)) return;

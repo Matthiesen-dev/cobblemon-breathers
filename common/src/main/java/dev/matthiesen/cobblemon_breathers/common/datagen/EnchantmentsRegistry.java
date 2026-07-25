@@ -10,7 +10,7 @@ import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
 
-public class EnchantmentsRegistry {
+public final class EnchantmentsRegistry {
     public static final ResourceKey<Enchantment> BREATHER_UPGRADE = ResourceKey.create(Registries.ENCHANTMENT, CobblemonBreathers.modResource("breather_upgrade"));
 
     public static void bootstrap(BootstrapContext<Enchantment> bootstrapContext) {

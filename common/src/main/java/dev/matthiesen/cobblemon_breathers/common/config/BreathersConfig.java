@@ -2,7 +2,7 @@ package dev.matthiesen.cobblemon_breathers.common.config;
 
 import com.google.gson.annotations.SerializedName;
 
-public class BreathersConfig {
+public final class BreathersConfig {
     @SerializedName("reBreatherItemConfig")
     public ReBreatherItemConfig reBreatherItemConfig = new ReBreatherItemConfig();
 
