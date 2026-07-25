@@ -12,8 +12,8 @@ The second tier, the ReBreather Mk2 grants the player the Water Breathing and Ni
 The third tier, the ReBreather Mk3 grants the player the Conduit Power Effect while underwater for 20 minutes (Configurable) without finding an air bubble.
 
 ## Requirements
-- [Cobblemon](https://modrinth.com/mod/cobblemon)
 - [Matthiesen Core](https://modrinth.com/mod/matthiesen-core)
+- [Cobblemon](https://modrinth.com/mod/cobblemon)
 
 ### Optional Dependencies
 - [Accessories](https://modrinth.com/mod/accessories) - For equipping the ReBreathers in an accessory slot.
