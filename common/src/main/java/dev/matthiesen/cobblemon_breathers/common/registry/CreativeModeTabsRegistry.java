@@ -1,16 +1,19 @@
 package dev.matthiesen.cobblemon_breathers.common.registry;
 
 import dev.matthiesen.cobblemon_breathers.common.CobblemonBreathers;
+import dev.matthiesen.matthiesen_core.common.core.registry.BuiltInCreativeModeSection;
 import dev.matthiesen.matthiesen_core.common.registry.AbstractCreativeModeTabRegistry;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.CreativeModeTabs;
-
-import java.util.function.Supplier;
 
 public final class CreativeModeTabsRegistry extends AbstractCreativeModeTabRegistry {
     public static final CreativeModeTabsRegistry INSTANCE = new CreativeModeTabsRegistry();
+
+    private static final BuiltInCreativeModeSection.RegistrationKey REBREATHERS_KEY = new BuiltInCreativeModeSection.RegistrationKey(
+            CobblemonBreathers.modResource("breathers"),
+            Component.literal("Cobblemon Breathers"),
+            100
+    );
 
     private CreativeModeTabsRegistry() {
         super(CobblemonBreathers.MOD_ID);
@@ -20,17 +23,6 @@ public final class CreativeModeTabsRegistry extends AbstractCreativeModeTabRegis
         CobblemonBreathers.INSTANCE.createInfoLog("Registering creative mode tabs...");
 
         INSTANCE.registerTabItemAugmentations(CreativeModeTabs.TOOLS_AND_UTILITIES, ItemRegistry.REBREATHERS);
-    }
-
-    public static final Supplier<CreativeModeTab> MAIN_TAB;
-
-    static {
-        MAIN_TAB = INSTANCE.register("cobblemon_breathers", () -> INSTANCE.getRegistryBuilder().newCreativeTabBuilder()
-                .title(Component.translatable("itemGroup." + CobblemonBreathers.MOD_ID + ".cobblemon_breathers"))
-                .icon(() -> new ItemStack(ItemRegistry.REBREATHER_MK1.get()))
-                .displayItems((enabledFeatures, entries) ->
-                        ItemRegistry.REBREATHERS.forEach(breather ->
-                                entries.accept(breather.get())))
-                .build());
+        INSTANCE.registerItemsToMiscTab(REBREATHERS_KEY, ItemRegistry.REBREATHERS);
     }
 }
