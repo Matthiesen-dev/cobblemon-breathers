@@ -56,10 +56,6 @@ public final class ItemRegistry extends AbstractItemRegistry {
     );
 
     private static <T extends Item> Supplier<T> registerReBreather(String id, Integer maxAir, UnaryOperator<Effects.Builder> effectBuilder) {
-        return registerItem(id, ReBreatherItem.create(maxAir, effectBuilder));
-    }
-
-    private static <T extends Item> Supplier<T> registerItem(String id, Supplier<T> item) {
-        return INSTANCE.register(id, item);
+        return INSTANCE.register(id, ReBreatherItem.create(maxAir, effectBuilder));
     }
 }
