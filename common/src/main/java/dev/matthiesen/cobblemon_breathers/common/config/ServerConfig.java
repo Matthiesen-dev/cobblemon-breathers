@@ -4,15 +4,19 @@ import net.neoforged.neoforge.common.ModConfigSpec;
 
 public final class ServerConfig {
 
+    // General Configuration
     public ModConfigSpec.IntValue airSupplyRecovery;
 
+    // Max Air Configuration
     public ModConfigSpec.IntValue maxAir_mk1;
     public ModConfigSpec.IntValue maxAir_mk2;
     public ModConfigSpec.IntValue maxAir_mk3;
 
+    // Effect Control Configuration
     public ModConfigSpec.BooleanValue effects_showAmbient;
     public ModConfigSpec.BooleanValue effects_visible;
 
+    // Breather Upgrade Enchantment Configuration
     public ModConfigSpec.BooleanValue enchants_disableEffects;
     public ModConfigSpec.IntValue enchants_levelOneAirAddition;
     public ModConfigSpec.IntValue enchants_levelTwoAirAddition;

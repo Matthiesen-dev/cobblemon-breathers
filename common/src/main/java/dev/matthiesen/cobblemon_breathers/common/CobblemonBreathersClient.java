@@ -26,7 +26,7 @@ public final class CobblemonBreathersClient extends AbstractCommonClientMod {
 
     @Override
     public void initialize() {
-        registerModConfig(INSTANCE.getModId(), ModConfigType.CLIENT, BreathersConfig.CLIENT_SPEC, "cobblemon_breathers/client.toml");
+        registerModConfig(CobblemonBreathers.MOD_ID, ModConfigType.CLIENT, BreathersConfig.CLIENT_SPEC, "cobblemon_breathers/client.toml");
 
         PlatformClientEvents.registerHudLayer(
                 HudOrdering.AFTER,

@@ -4,6 +4,7 @@ import net.neoforged.neoforge.common.ModConfigSpec;
 
 public final class ClientConfig {
 
+    // Hud Configuration
     public ModConfigSpec.BooleanValue hud_disableOverlay;
 
     public ClientConfig(ModConfigSpec.Builder builder) {
