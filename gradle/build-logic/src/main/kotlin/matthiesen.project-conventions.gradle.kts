@@ -36,6 +36,9 @@ repositories {
             includeGroup("dev.matthiesen")
         }
     }
+    maven("https://raw.githubusercontent.com/Fuzss/modresources/main/maven/") {
+        name = "Fuzs Mod Resources"
+    }
     maven("https://maven.wispforest.io/releases")
     maven("https://maven.su5ed.dev/releases")
     maven(url = "https://s01.oss.sonatype.org/content/repositories/snapshots/") {

@@ -1,7 +1,7 @@
 package dev.matthiesen.cobblemon_breathers.common.item;
 
 import dev.matthiesen.cobblemon_breathers.common.CobblemonBreathers;
-import dev.matthiesen.cobblemon_breathers.common.config.BreathersServerConfig;
+import dev.matthiesen.cobblemon_breathers.common.config.BreathersConfig;
 import dev.matthiesen.cobblemon_breathers.common.datagen.ModTags;
 import dev.matthiesen.cobblemon_breathers.common.registry.ComponentTypesRegistry;
 import dev.matthiesen.cobblemon_breathers.common.util.Effects;
@@ -25,17 +25,24 @@ import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 
 public class ReBreatherItem extends Item implements Equipable {
-    private final BreathersServerConfig config;
     private final boolean effectIcons;
-    private final int baseMaxAir;
     private final List<MobEffectInstance> effects;
+    private final int mk;
 
-    public ReBreatherItem(Integer maxAir, UnaryOperator<Effects.Builder> effectBuilder) {
-        super(getItemProps(maxAir));
-        this.config = CobblemonBreathers.INSTANCE.getServerConfig();
+    private static int getBaseMaxAir(int mk) {
+        return switch (mk) {
+            case 1 -> BreathersConfig.SERVER_CONFIG.maxAir_mk1.getAsInt();
+            case 2 -> BreathersConfig.SERVER_CONFIG.maxAir_mk2.getAsInt();
+            case 3 -> BreathersConfig.SERVER_CONFIG.maxAir_mk3.getAsInt();
+            default -> 0;
+        };
+    }
+
+    public ReBreatherItem(Integer mk, UnaryOperator<Effects.Builder> effectBuilder) {
+        super(getItemProps());
+        this.mk = mk;
         // Investigate why this seems to do nothing...
         this.effectIcons = false;
-        this.baseMaxAir = maxAir;
         this.effects = effectBuilder.apply(Effects.builder()).build();
     }
 
@@ -44,15 +51,13 @@ public class ReBreatherItem extends Item implements Equipable {
         return () -> (T) new ReBreatherItem(maxAir, effectBuilder);
     }
 
-    private static Properties getItemProps(int maxAir) {
+    private static Properties getItemProps() {
         return new Item.Properties()
-                .stacksTo(1)
-                .component(ComponentTypesRegistry.AIR_RESERVE.get(), maxAir)
-                .component(ComponentTypesRegistry.MAX_AIR.get(), maxAir);
+                .stacksTo(1);
     }
 
     public int getMaxAir() {
-        return baseMaxAir;
+        return getBaseMaxAir(mk);
     }
 
     public boolean isEnchantable(ItemStack arg) {
@@ -115,16 +120,18 @@ public class ReBreatherItem extends Item implements Equipable {
     }
 
     public void evaluateEffects(ItemStack itemStack, Player player) {
+        ensureAirComponentsInitialized(itemStack);
         int currentAir = itemStack.getOrDefault(ComponentTypesRegistry.AIR_RESERVE.get(), 0);
         if (currentAir == 0) return;
+        var config = BreathersConfig.SERVER_CONFIG;
         for (MobEffectInstance effect : effects) {
             if (!player.hasEffect(effect.getEffect())) {
                 player.addEffect(new MobEffectInstance(
                         effect.getEffect(),
                         MobEffectInstance.INFINITE_DURATION,
                         0,
-                        config.effectControlConfig.showAmbient,
-                        config.effectControlConfig.visible, effectIcons
+                        config.effects_showAmbient.getAsBoolean(),
+                        config.effects_visible.getAsBoolean(), effectIcons
                 ));
             }
         }
@@ -156,11 +163,13 @@ public class ReBreatherItem extends Item implements Equipable {
 
     public void tickAirSupply(ItemStack item, Player player) {
         if (player.tickCount % 20 != 0) return;
+        ensureAirComponentsInitialized(item);
         int currentAir = item.getOrDefault(ComponentTypesRegistry.AIR_RESERVE.get(), 0);
         int maxAir = item.getOrDefault(ComponentTypesRegistry.MAX_AIR.get(), 0);
+        var config = BreathersConfig.SERVER_CONFIG;
         if (PlayerUtils.checkPlayerConditions(player) || PlayerUtils.checkAntiConditions(player)) {
             if (currentAir < maxAir) {
-                var toAddToCurrent = currentAir + config.airSupplyRecovery;
+                var toAddToCurrent = currentAir + config.airSupplyRecovery.getAsInt();
                 if (toAddToCurrent > maxAir) toAddToCurrent = maxAir;
                 item.set(ComponentTypesRegistry.AIR_RESERVE.get(), ensureMinimumValue(toAddToCurrent));
             }
@@ -191,15 +200,32 @@ public class ReBreatherItem extends Item implements Equipable {
 
     @Override
     public int getBarWidth(ItemStack itemStack) {
+        ensureAirComponentsInitialized(itemStack);
         int currentAir = itemStack.getOrDefault(ComponentTypesRegistry.AIR_RESERVE.get(), 0);
         int maxAir = itemStack.getOrDefault(ComponentTypesRegistry.MAX_AIR.get(), 0);
+        if (maxAir <= 0) return 0;
         return Math.round((float)currentAir * 13.0F / (float)maxAir);
     }
 
     @Override
     public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
+        ensureAirComponentsInitialized(itemStack);
         int currentAir = itemStack.getOrDefault(ComponentTypesRegistry.AIR_RESERVE.get(), 0);
         int maxAir = itemStack.getOrDefault(ComponentTypesRegistry.MAX_AIR.get(), 0);
         list.add(Component.translatable("airSupply.cobblemon_breathers.current_air", currentAir, maxAir).withStyle(ChatFormatting.BLUE));
+    }
+
+    private void ensureAirComponentsInitialized(ItemStack itemStack) {
+        int maxAir = itemStack.getOrDefault(ComponentTypesRegistry.MAX_AIR.get(), 0);
+        if (!itemStack.has(ComponentTypesRegistry.MAX_AIR.get()) || maxAir <= 0) {
+            maxAir = getBaseMaxAir(mk);
+            if (maxAir > 0) {
+                itemStack.set(ComponentTypesRegistry.MAX_AIR.get(), maxAir);
+            }
+        }
+
+        if (!itemStack.has(ComponentTypesRegistry.AIR_RESERVE.get()) && maxAir > 0) {
+            itemStack.set(ComponentTypesRegistry.AIR_RESERVE.get(), maxAir);
+        }
     }
 }

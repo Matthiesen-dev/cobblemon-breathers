@@ -14,6 +14,8 @@ The third tier, the ReBreather Mk3 grants the player the Conduit Power Effect wh
 ## Requirements
 - [Matthiesen Core](https://modrinth.com/mod/matthiesen-core)
 - [Cobblemon](https://modrinth.com/mod/cobblemon)
+- [Fabric API](https://modrinth.com/mod/fabric-api) (Fabric only)
+- [Forge Config API Port](https://modrinth.com/mod/forge-config-api-port) (Fabric only)
 
 ### Optional Dependencies
 - [Accessories](https://modrinth.com/mod/accessories) - For equipping the ReBreathers in an accessory slot.

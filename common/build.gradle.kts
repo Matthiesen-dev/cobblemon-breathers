@@ -19,6 +19,8 @@ sourceSets {
 dependencies {
     minecraft(libs.minecraft)
     mappings(loom.officialMojangMappings())
+
+    compileOnly(libs.bundles.commonCompileOnly)
     modImplementation(libs.bundles.commonModImplementationNoTransitive) { isTransitive = false }
     modCompileOnly(libs.bundles.commonModCompileOnly)
 

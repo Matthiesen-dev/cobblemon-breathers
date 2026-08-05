@@ -35,16 +35,16 @@ public final class ItemRegistry extends AbstractItemRegistry {
 
     static {
         REBREATHER_MK1 = registerReBreather("rebreather_mk1",
-                CobblemonBreathers.INSTANCE.getServerConfig().maxAirConfig.mk1,
+                1,
                 builder -> builder.addEffect(MobEffects.WATER_BREATHING)
         );
         REBREATHER_MK2 = registerReBreather("rebreather_mk2",
-                CobblemonBreathers.INSTANCE.getServerConfig().maxAirConfig.mk2,
+                2,
                 builder -> builder.addEffect(MobEffects.WATER_BREATHING)
                         .addEffect(MobEffects.NIGHT_VISION)
         );
         REBREATHER_MK3 = registerReBreather("rebreather_mk3",
-                CobblemonBreathers.INSTANCE.getServerConfig().maxAirConfig.mk3,
+                3,
                 builder -> builder.addEffect(MobEffects.CONDUIT_POWER)
         );
     }
@@ -55,7 +55,7 @@ public final class ItemRegistry extends AbstractItemRegistry {
             REBREATHER_MK3
     );
 
-    private static <T extends Item> Supplier<T> registerReBreather(String id, Integer maxAir, UnaryOperator<Effects.Builder> effectBuilder) {
-        return INSTANCE.register(id, ReBreatherItem.create(maxAir, effectBuilder));
+    private static <T extends Item> Supplier<T> registerReBreather(String id, Integer mk, UnaryOperator<Effects.Builder> effectBuilder) {
+        return INSTANCE.register(id, ReBreatherItem.create(mk, effectBuilder));
     }
 }
