@@ -26,18 +26,12 @@ repositories {
     maven("https://repo.spongepowered.org/repository/maven-public")
     maven("https://maven.matthiesen.dev/releases") {
         name = "devMatthiesenMavenReleases"
-        content {
-            includeGroup("dev.matthiesen")
-        }
     }
     maven("https://maven.matthiesen.dev/snapshots") {
         name = "devMatthiesenMavenSnapshots"
         content {
             includeGroup("dev.matthiesen")
         }
-    }
-    maven("https://raw.githubusercontent.com/Fuzss/modresources/main/maven/") {
-        name = "Fuzs Mod Resources"
     }
     maven("https://maven.wispforest.io/releases")
     maven("https://maven.su5ed.dev/releases")
