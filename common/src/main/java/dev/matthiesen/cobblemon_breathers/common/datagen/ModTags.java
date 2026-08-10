@@ -28,7 +28,7 @@ public final class ModTags {
         public static final TagKey<Item> HAT = createTag("hat");
 
         private static TagKey<Item> createTag(String name) {
-            return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("accessories", name));
+            return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(CobblemonBreathers.ACCESSORIES_MOD_ID, name));
         }
     }
 

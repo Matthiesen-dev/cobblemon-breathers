@@ -17,6 +17,7 @@ public final class CobblemonBreathers extends AbstractCommonMod {
     public static final String MOD_NAME = "Cobblemon Breathers";
     public static @Token final String METRICS_TOKEN = "24049a71a4b10ce2eabba1a736f9f1cc";
     public static final int AIR_SUPPLY_BAR_COLOR = 0x00BFFF;
+    public static final String ACCESSORIES_MOD_ID = "accessories";
 
     public static final CobblemonBreathers INSTANCE = new CobblemonBreathers();
 
@@ -44,7 +45,7 @@ public final class CobblemonBreathers extends AbstractCommonMod {
         CreativeModeTabsRegistry.init();
         EnchantmentEffectsRegistry.init();
 
-        if (getCommonUtils().isModLoaded("accessories")) {
+        if (getCommonUtils().isModLoaded(ACCESSORIES_MOD_ID)) {
             createInfoLog("Accessories mod detected, initializing compatibility");
             AccessoriesCompat.init();
         }

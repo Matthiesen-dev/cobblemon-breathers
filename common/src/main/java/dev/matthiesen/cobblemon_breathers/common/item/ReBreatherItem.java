@@ -87,7 +87,7 @@ public class ReBreatherItem extends Item implements Equipable {
         boolean isInHelmetSlot = !helmetSlot.isEmpty() && helmetSlot.getItem().equals(this);
         boolean isInAccessorySlot = false;
 
-        if (CobblemonBreathers.INSTANCE.getCommonUtils().isModLoaded("accessories")) {
+        if (CobblemonBreathers.INSTANCE.getCommonUtils().isModLoaded(CobblemonBreathers.ACCESSORIES_MOD_ID)) {
             var capability = AccessoriesCapability.get(player);
             if (capability != null) {
                 var bl = capability.isEquipped(stack -> !stack.isEmpty() && stack.is(ModTags.Items.BREATHERS));
@@ -226,14 +226,11 @@ public class ReBreatherItem extends Item implements Equipable {
         int maxAir = itemStack.getOrDefault(ComponentTypesRegistry.MAX_AIR.get(), 0);
         int baseMaxAir = getBaseMaxAir(mk);
         if (!itemStack.has(ComponentTypesRegistry.MAX_AIR.get()) || maxAir <= 0 || maxAir != baseMaxAir) {
-            maxAir = baseMaxAir;
-            if (maxAir > 0) {
-                itemStack.set(ComponentTypesRegistry.MAX_AIR.get(), maxAir);
-            }
+            itemStack.set(ComponentTypesRegistry.MAX_AIR.get(), baseMaxAir);
         }
 
-        if (!itemStack.has(ComponentTypesRegistry.AIR_RESERVE.get()) && maxAir > 0) {
-            itemStack.set(ComponentTypesRegistry.AIR_RESERVE.get(), maxAir);
+        if (!itemStack.has(ComponentTypesRegistry.AIR_RESERVE.get()) && baseMaxAir > 0) {
+            itemStack.set(ComponentTypesRegistry.AIR_RESERVE.get(), baseMaxAir);
         }
 
         if (!itemStack.has(ComponentTypesRegistry.ADDITIONAL_AIR.get())) {

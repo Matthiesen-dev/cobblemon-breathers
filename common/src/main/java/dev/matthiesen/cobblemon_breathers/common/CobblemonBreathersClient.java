@@ -39,7 +39,7 @@ public final class CobblemonBreathersClient extends AbstractCommonClientMod {
     }
 
     public void registerRenderers() {
-        if (CobblemonBreathers.INSTANCE.getCommonUtils().isModLoaded("accessories")) {
+        if (CobblemonBreathers.INSTANCE.getCommonUtils().isModLoaded(CobblemonBreathers.ACCESSORIES_MOD_ID)) {
             createInfoLog("Accessories mod detected, initializing client compatibility...");
              AccessoriesCompatClient.init();
         }
@@ -61,7 +61,7 @@ public final class CobblemonBreathersClient extends AbstractCommonClientMod {
         boolean reBreatherIsInArmorSlot = client.player.getInventory().armor.get(3).is(ModTags.Items.BREATHERS);
         if (reBreatherIsInArmorSlot) {
             itemToDisplay = client.player.getInventory().armor.get(3);
-        } else if (CobblemonBreathers.INSTANCE.getCommonUtils().isModLoaded("accessories")) {
+        } else if (CobblemonBreathers.INSTANCE.getCommonUtils().isModLoaded(CobblemonBreathers.ACCESSORIES_MOD_ID)) {
             var capability = AccessoriesCapability.get(client.player);
             if (capability != null) {
                 var bl = capability.isEquipped(stack -> !stack.isEmpty() && stack.is(ModTags.Items.BREATHERS));
