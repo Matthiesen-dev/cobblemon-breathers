@@ -12,7 +12,7 @@ public final class TranslationsRegistry {
 
         // Air Supply Labels
         EN_TRANSLATIONS.put(newAirSupply("current_air"), "Current Air Supply: %s/%s seconds");
-        EN_TRANSLATIONS.put(newAirSupply("supply_low"), "Air Supply low! %s Seconds left!");
+        EN_TRANSLATIONS.put(newAirSupply("supply_low"), "Air Supply low! You should find air soon!");
         EN_TRANSLATIONS.put(newAirSupply("supply_depleted"), "Air Supply depleted! You are suffocating!");
         EN_TRANSLATIONS.put(newAirSupply("hud_display"), "%s seconds");
 

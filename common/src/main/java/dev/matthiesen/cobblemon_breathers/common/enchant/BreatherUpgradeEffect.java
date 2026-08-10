@@ -18,21 +18,20 @@ public record BreatherUpgradeEffect() implements EnchantmentEntityEffect {
     @Override
     public void apply(ServerLevel world, int enchantLevel, EnchantedItemInUse context, Entity entity, Vec3 pos) {
         var config = BreathersConfig.SERVER_CONFIG;
-        if (!(context.itemStack().getItem() instanceof ReBreatherItem item)
+        if (!(context.itemStack().getItem() instanceof ReBreatherItem)
                 || config.enchants_disableEffects.getAsBoolean()
                 || entity.getType() != EntityType.PLAYER) return;
 
-        int maxAir = item.getMaxAir();
         switch (enchantLevel) {
-            case 1 -> setMaxAir(context, maxAir, config.enchants_levelOneAirAddition.getAsInt());
-            case 2 -> setMaxAir(context, maxAir, config.enchants_levelTwoAirAddition.getAsInt());
-            case 3 -> setMaxAir(context, maxAir, config.enchants_levelThreeAirAddition.getAsInt());
+            case 1 -> setMaxAir(context, config.enchants_levelOneAirAddition.getAsInt());
+            case 2 -> setMaxAir(context, config.enchants_levelTwoAirAddition.getAsInt());
+            case 3 -> setMaxAir(context, config.enchants_levelThreeAirAddition.getAsInt());
             default -> {}
         }
     }
 
-    public static void setMaxAir(EnchantedItemInUse context, int maxAir, int Addition) {
-        context.itemStack().set(ComponentTypesRegistry.MAX_AIR.get(), maxAir + Addition);
+    public static void setMaxAir(EnchantedItemInUse context, int Addition) {
+        context.itemStack().set(ComponentTypesRegistry.ADDITIONAL_AIR.get(), Addition);
     }
 
     @Override

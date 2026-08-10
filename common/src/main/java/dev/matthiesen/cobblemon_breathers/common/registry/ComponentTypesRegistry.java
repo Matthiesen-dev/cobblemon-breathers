@@ -21,10 +21,12 @@ public final class ComponentTypesRegistry extends AbstractDataComponentTypeRegis
 
     public static final Supplier<DataComponentType<Integer>> AIR_RESERVE;
     public static final Supplier<DataComponentType<Integer>> MAX_AIR;
+    public static final Supplier<DataComponentType<Integer>> ADDITIONAL_AIR;
 
     static {
         AIR_RESERVE = register("air_reserve", builder -> builder.persistent(ExtraCodecs.NON_NEGATIVE_INT));
         MAX_AIR = register("max_air", builder -> builder.persistent(ExtraCodecs.POSITIVE_INT));
+        ADDITIONAL_AIR = register("additional_air", builder -> builder.persistent(ExtraCodecs.NON_NEGATIVE_INT));
     }
 
     @SuppressWarnings("unchecked")
