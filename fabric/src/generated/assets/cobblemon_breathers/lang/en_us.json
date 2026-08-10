@@ -2,7 +2,7 @@
   "airSupply.cobblemon_breathers.current_air": "Current Air Supply: %s/%s seconds",
   "airSupply.cobblemon_breathers.hud_display": "%s seconds",
   "airSupply.cobblemon_breathers.supply_depleted": "Air Supply depleted! You are suffocating!",
-  "airSupply.cobblemon_breathers.supply_low": "Air Supply low! %s Seconds left!",
+  "airSupply.cobblemon_breathers.supply_low": "Air Supply low! You should find air soon!",
   "cobblemon_breathers.configuration.airSupplyRecovery": "Air Supply Recovery",
   "cobblemon_breathers.configuration.airSupplyRecovery.tooltip": "How much air supply is recovered per tick when the player is not underwater.",
   "cobblemon_breathers.configuration.disableEnchantmentEffect": "Disable Enchantment Effect",
