@@ -1,0 +1,21 @@
+package dev.matthiesen.cobblemon_breathers.common.compat.accessories;
+
+import dev.matthiesen.cobblemon_breathers.common.item.ReBreatherItem;
+import dev.matthiesen.cobblemon_breathers.common.util.PlayerUtils;
+import io.wispforest.accessories.api.Accessory;
+import io.wispforest.accessories.api.slot.SlotReference;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+
+public record ReBreatherItemAccessory<T extends ReBreatherItem>(T item) implements Accessory {
+    @Override
+    public void tick(ItemStack stack, SlotReference reference) {
+        if (!(reference.entity() instanceof Player player)
+                || player.level().isClientSide()) return;
+        if (PlayerUtils.checkPlayerConditions(player) || !item.isItemEquipped(player)) {
+            item.clearEffects(player);
+            return;
+        }
+        item.tickAccessory(stack, player);
+    }
+}

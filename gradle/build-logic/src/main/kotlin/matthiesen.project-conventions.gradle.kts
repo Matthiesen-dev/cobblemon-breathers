@@ -26,9 +26,6 @@ repositories {
     maven("https://repo.spongepowered.org/repository/maven-public")
     maven("https://maven.matthiesen.dev/releases") {
         name = "devMatthiesenMavenReleases"
-        content {
-            includeGroup("dev.matthiesen")
-        }
     }
     maven("https://maven.matthiesen.dev/snapshots") {
         name = "devMatthiesenMavenSnapshots"
