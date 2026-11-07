@@ -20,6 +20,7 @@ dependencies {
     minecraft(libs.minecraft)
     mappings(loom.officialMojangMappings())
 
+    implementation(libs.bundles.commonImplementation)
     compileOnly(libs.bundles.commonCompileOnly)
     modImplementation(libs.bundles.commonModImplementationNoTransitive) { isTransitive = false }
     modCompileOnly(libs.bundles.commonModCompileOnly)

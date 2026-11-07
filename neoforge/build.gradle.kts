@@ -29,6 +29,7 @@ dependencies {
 
     modImplementation(libs.bundles.neoforgeModImplementationNoTransitive) { isTransitive = false }
     modImplementation(libs.bundles.neoforgeModImplementation)
+    modRuntimeOnly(libs.bundles.neoforgeModRuntimeOnly)
 
     forgeRuntimeLibrary(libs.kotlinforforge) {
         exclude("net.neoforged.fancymodloader", "loader")
