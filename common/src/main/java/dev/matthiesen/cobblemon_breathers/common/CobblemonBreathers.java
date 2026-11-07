@@ -2,11 +2,8 @@ package dev.matthiesen.cobblemon_breathers.common;
 
 import dev.matthiesen.cobblemon_breathers.common.compat.accessories.AccessoriesCompat;
 import dev.matthiesen.cobblemon_breathers.common.config.BreathersConfig;
-import dev.matthiesen.cobblemon_breathers.common.registry.ComponentTypesRegistry;
-import dev.matthiesen.cobblemon_breathers.common.registry.CreativeModeTabsRegistry;
-import dev.matthiesen.cobblemon_breathers.common.registry.EnchantmentEffectsRegistry;
-import dev.matthiesen.cobblemon_breathers.common.registry.ItemRegistry;
-import dev.matthiesen.libs.faststats.Token;
+import dev.matthiesen.cobblemon_breathers.common.registry.*;
+import dev.faststats.Token;
 import dev.matthiesen.matthiesen_core.common.AbstractCommonMod;
 import dev.matthiesen.matthiesen_core.common.api.platform.loader.ModConfigType;
 import net.minecraft.resources.ResourceLocation;
